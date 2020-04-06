@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
-import DiscoverScreen from '../screens/discover/DiscoverScreen'
-import MineScreen from '../screens/mine/MineScreen'
+import DiscoverScreen from '../screens/discover-screen'
+import MineScreen from '../screens/mine-screen'
 
 import {
     View,
@@ -36,6 +36,7 @@ export default class MainTabs extends Component {
               tabBarOptions={{
                 activeTintColor: 'tomato',
                 inactiveTintColor: 'gray',
+                keyboardHidesTabBar: true,
               }}
             >
                 <Tab.Screen name="Discover" component={DiscoverScreen} />

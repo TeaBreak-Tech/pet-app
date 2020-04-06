@@ -9,7 +9,7 @@ export const ThemeContext = React.createContext();
 
 const ThemeContextProvider = ({ children }) => {
     return (
-        <ThemeContext.Provider value={Themes.light}>
+        <ThemeContext.Provider value={Themes.standard}>
             {children}
         </ThemeContext.Provider>
     )

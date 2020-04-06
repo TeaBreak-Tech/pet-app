@@ -2,16 +2,15 @@
 
 // 引入外部依赖
 import React, { Component } from 'react';
-import { Provider,Text } from 'react-redux';
 import 'react-native-gesture-handler'; //不知道有没有用
 
 // StoreProvider 用于 redux 建立联系
 import StoreProvider from './redux/store-provider';
 // Context 对象用来提供全局的 theme 变量
-import ThemeContextProvider from './theme/ThemeContextProvider'
+import ThemeContextProvider from './appearance/theme/theme-context-provider'
 
 // 引入主导航文件（下一级入口）
-import IndexNav from './navigators/IndexNav'
+import IndexNav from './navigators/index-nav'
 
 // 使用输出 App类 的形式作为程序入口
 export default class App extends Component {
