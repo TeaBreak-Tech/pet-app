@@ -18,6 +18,10 @@
 		2DCD954D1E0B4F2C00145EB5 /* appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* appTests.m */; };
 		30B4D7F3EA670EF58A191246 /* libPods-app-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 72D391A4F026F5E0D3161253 /* libPods-app-tvOSTests.a */; };
 		BC5E0CF286774222369F24A4 /* libPods-app-appTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DAAA42567F0F3D4F5BB477A /* libPods-app-appTests.a */; };
+		C9D0D94F243E113200AC9071 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D0D94D243E113100AC9071 /* main.jsbundle */; };
+		C9D0D950243E113200AC9071 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C9D0D94D243E113100AC9071 /* main.jsbundle */; };
+		C9D0D951243E113200AC9071 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = C9D0D94E243E113200AC9071 /* assets */; };
+		C9D0D952243E113200AC9071 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = C9D0D94E243E113200AC9071 /* assets */; };
 		E0754166AAC2D26719FD8411 /* libPods-app.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F2527AC81D6B88E4F7C44DA /* libPods-app.a */; };
 		E360DDE3FD3A58B0540418D1 /* libPods-app-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F17EEF5D7D94BBAF23FC315 /* libPods-app-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -64,6 +68,8 @@
 		9F2527AC81D6B88E4F7C44DA /* libPods-app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56FC7B01130B22005F8DF86 /* Pods-app-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-appTests.release.xcconfig"; path = "Target Support Files/Pods-app-appTests/Pods-app-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		A85DB16371160109CB338A49 /* Pods-app-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-app-tvOSTests/Pods-app-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C9D0D94D243E113100AC9071 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = ../release_ios/main.jsbundle; sourceTree = "<group>"; };
+		C9D0D94E243E113200AC9071 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../release_ios/assets; sourceTree = "<group>"; };
 		E429981842AF7F7A5772C51D /* Pods-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-app.release.xcconfig"; path = "Target Support Files/Pods-app/Pods-app.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -161,7 +167,6 @@
 				2FA391128B6B37C6A2042618 /* Pods-app-tvOSTests.debug.xcconfig */,
 				A85DB16371160109CB338A49 /* Pods-app-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +180,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				C9D0D94E243E113200AC9071 /* assets */,
+				C9D0D94D243E113100AC9071 /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* app */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* appTests */,
@@ -331,6 +338,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D0D950243E113200AC9071 /* main.jsbundle in Resources */,
+				C9D0D952243E113200AC9071 /* assets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +347,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D0D94F243E113200AC9071 /* main.jsbundle in Resources */,
+				C9D0D951243E113200AC9071 /* assets in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 			);
@@ -904,7 +915,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "app" */ = {
 			isa = XCConfigurationList;
@@ -913,7 +924,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "app-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -922,7 +933,7 @@
 				2D02E4981E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "app-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -931,7 +942,7 @@
 				2D02E49A1E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "app" */ = {
 			isa = XCConfigurationList;
@@ -940,7 +951,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
