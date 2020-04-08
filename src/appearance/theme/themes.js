@@ -3,6 +3,7 @@
 const Themes = {
     light: {
         basic: '#f2958d',
+        basic_shadow:"#e76e5c",
         basic_dark: '#be6066',
         basic_light: '#be6066',
         alert: '#be6066',
@@ -14,6 +15,7 @@ const Themes = {
     },
     standard: {
         basic: '#f2958d',
+        basic_shadow:"#e76e5c66",
         basic_dark: '#be6066',
         basic_light: '#ffd285',
         alert: '#be6066',

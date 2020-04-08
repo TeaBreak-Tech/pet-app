@@ -4,6 +4,9 @@
 import React, { Component } from 'react';
 import 'react-native-gesture-handler'; //不知道有没有用
 
+
+import { NavigationContainer } from '@react-navigation/native';
+
 // StoreProvider 用于 redux 建立联系
 import StoreProvider from './redux/store-provider';
 // Context 对象用来提供全局的 theme 变量
@@ -21,10 +24,13 @@ export default class App extends Component {
     return (
       <ThemeContextProvider >
         <StoreProvider>
+          
             {/* 用根导航器 navigatior/IndexNav.js 作为下一级入口 */}
             <IndexNav/>
+          
         </StoreProvider>
       </ThemeContextProvider>
+      
     );
   }
 };

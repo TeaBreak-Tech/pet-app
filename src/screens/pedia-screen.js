@@ -1,4 +1,4 @@
-// 用户页
+// 百科页
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
@@ -28,25 +28,14 @@ export default connect (
     mapStateToProps
 )(class MineScreen extends Component {
 
-    componentDidMount() {
-        // 每次导航到此页，更改顶部 header 的样式
-        const navigation = this.props.navigation
-        this._unsubscribe = navigation.addListener('focus', () => {
-            // 导航到此页时执行
-        });
-    }
-
     render() {
         
         const { text,isLogin,path } = this.props;
 
         return (
         <View style={StyleSheet.container}>
-            <View style={{height:400,backgroundColor:"gray"}}>
-
-            </View>
             <Text>
-                Hello ! This is mine Screen ! Welcom: {text ||'no text'}
+                Hello ! This is Pedia ! Welcom: {text ||'no text'}
             </Text>
             <Text>
                 You are in navigation: {path ||'no path'}
