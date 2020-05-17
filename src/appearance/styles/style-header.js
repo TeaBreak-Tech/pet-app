@@ -6,19 +6,19 @@ var style_header= StyleSheet.create({
         alignItems: 'center'
     },
     searcing_bar:{                  // 搜索框是一个输入框
-        height: 36,
-        width: 270,                     // 形状
-        borderRadius: 18,
+        width: 120,
+	    height: 14,
+        borderRadius: 7,
         fontSize: 17,
         textAlign:'center',
         paddingTop: 0,
         paddingBottom: 0,
     },
-    searcing_bar_searching:{         // 搜索框是一个输入框
+    searcing_bar_searching:{         // 搜索框在搜索状态下的样式
         right:5,                        // 偏移
-        height: 36,
-        width: 300,                     // 形状
-        borderRadius: 18,
+        width: 120,
+	    height: 14,
+        borderRadius: 7,
         fontSize: 17,
         paddingStart: 10,
         paddingTop: 0,

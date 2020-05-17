@@ -1,7 +1,8 @@
 // Themes 对象用于存储与主题相关的数据
 
 const Themes = {
-    light: {
+    dark: {
+        name: 'dark',
         basic: '#f2958d',
         basic_shadow:"#e76e5c",
         basic_dark: '#be6066',
@@ -14,6 +15,7 @@ const Themes = {
         white: '#000000',
     },
     standard: {
+        name: 'standard',
         basic: '#f2958d',
         basic_shadow:"#e76e5c66",
         basic_dark: '#be6066',

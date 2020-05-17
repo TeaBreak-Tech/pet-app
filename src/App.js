@@ -13,7 +13,7 @@ import StoreProvider from './redux/store-provider';
 import ThemeContextProvider from './appearance/theme/theme-context-provider'
 
 // 引入主导航文件（下一级入口）
-import IndexNav from './navigators/index-nav'
+import RootDrawer from './navigators/root-drawer'
 
 // 使用输出 App类 的形式作为程序入口
 export default class App extends Component {
@@ -26,7 +26,7 @@ export default class App extends Component {
         <StoreProvider>
           
             {/* 用根导航器 navigatior/IndexNav.js 作为下一级入口 */}
-            <IndexNav/>
+            <RootDrawer/>
           
         </StoreProvider>
       </ThemeContextProvider>

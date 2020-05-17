@@ -31,8 +31,8 @@ export default connect (
         width = Dimensions.get('window').width
         let path = this.props.path
         searching = path=='Community-Search'
-                || path=='Pedia-Search'
-        folded = path=='Pedia-Display'
+                || path=='Find-Search'
+        folded = path=='Find-Display'
                 || searching
         return(
             <View style={[{width:width,alignItems: 'center'}]}>
@@ -63,7 +63,7 @@ export default connect (
                         // 将搜索框的信息存入 state
                         onChangeText={(text) => this.setState({text})}
                         // 默认内容
-                        defaultValue="搜点什么"
+                        defaultValue="搜索"
 
                         // 搜索栏获取焦点时
                         onFocus={()=>{

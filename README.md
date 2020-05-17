@@ -6,20 +6,22 @@
 .
 ├── BlogDetail
 ├── GoodsDetail
-├── Main
-│   ├── Community
-│   │   ├── Community-Display
-│   │   │   ├── Discover
-│   │   │   ├── Discussion
-│   │   │   └── Follow
-│   │   └── Community-Search
-│   ├── Marcket
-│   │   ├── Marcket-Display
-│   │   └── Marcket-Search
-│   ├── Mine
-│   └── Pedia
-│       ├── Pedia-Display
-│       └── Pedia-Search
+├── Drawer
+│   └── Main
+│       ├── Community
+│       │   ├── Community-Display
+│       │   │   ├── Discover
+│       │   │   ├── Discussion
+│       │   │   └── Follow
+│       │   └── Community-Search
+│       ├── Marcket
+│       │   ├── Marcket-Display
+│       │   └── Marcket-Search
+│       ├── Mine
+│       └── Find
+│           ├── Find-Display
+│           └── Find-Search
+├── Settings
 ├── Message
 ├── PediaDetail
 ├── PessageDetail

@@ -2,24 +2,34 @@
 
 // 使用 Stack 的形式提供所有分支页面的导航
 
-// 包裹于 App.js 的 SafeArea 中
+// Header 在此处加入
+// Header 设置：动态高度、动态透明
+// Header 组件的点击导航事件在此设置
+
+// 关于设置Header：https://reactnavigation.org/docs/stack-navigator/#navigationoptions-used-by-stacknavigator
+
 
 import React, { Component } from 'react';
-import { TextInput, Button, View,Text,Dimensions,StatusBar} from 'react-native';
+import { Button, View,Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import MainTabs from './main-tabs'
-import DiscoverScreen from '../screens/discover-screen'
-import HeaderTitle from '../component/header-title'
-import HeaderLeft from '../component/header-left'
-import HeaderRight from '../component/header-right'
+
+
 
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
 import { connect } from 'react-redux'
 import { navigation } from '../redux/action/navigation_actions'
 
-import { NavigationActions } from 'react-navigation'
+import HeaderTitle from '../component/header-title'
+import HeaderLeft from '../component/header-left'
+import HeaderRight from '../component/header-right'
+
+import MainTabs from './main-tabs'
+import InfoDrawer from './root-drawer'
+import SettingScreen from '../screens/setting-screen'
+import CheckinScreen from '../screens/checkin-screen'
+
 
 
 // 创建根导航器
@@ -36,7 +46,7 @@ export default connect (
   // 将 React Navigation 的导航状态变化解析到 Redux 状态管理中
   setRoute(state){
     let route = state.routes[state.index]
-    if (route.state){this.setRoute(route.state)}
+    if (route.state){this.setRoute(route.state)} //迭代
     else {
       this.props.navigation(route.name)
     }
@@ -46,10 +56,16 @@ export default connect (
     // 使用主题
     let theme = this.context;
     path = this.props.path
+    
+    Mine = path=="Mine"
+        || path=="Settings" // 页面切换动画时仍然保持 Mine 页设置
+        || path=="Checkin"
+
     return (
-      <NavigationContainer onStateChange={state => this.setRoute(state)}>
-        
-        <Stack.Navigator>
+      <Stack.Navigator
+          initialRouteName="Main"
+          mode= "modal"
+        >
 
         {/* 主导航 */}
         {/* 主导航拥有一个 header，可以根据主导航所在的页面而改变样式 */}
@@ -65,49 +81,48 @@ export default connect (
                 +(path=='Follow'
                   || path=='Discover'
                   || path=='Discussion' ?25:0)            // 导航隐藏时减去导航高度
-            },   
-            headerShown: path=='Mine'?false:true,
-
+            },
 
             // 顶栏内容
             headerTitle: () => (<HeaderTitle navigation={navigation}/>),  // 传入导航属性让导航栏拥有导航功能
-            headerLeft: () => (<HeaderLeft/>),                            // 消息提醒图标
-            headerRight: () => (<HeaderRight/>),                              // 宠物图标
+            headerLeft: () => (<HeaderLeft
+              onPress={()=>path=='Mine'?
+              navigation.navigate('Settings'):   // 我=设置按钮
+              navigation.openDrawer()           // 头像按钮
+            }/>),
+            headerRight: () => (<HeaderRight 
+              onPress={()=>path=='Mine'?
+              navigation.navigate('Checkin'):  // 签到按钮
+              navigation.navigate('Checkin')   // 宠物按钮
+            }/>),
 
             // 标题居中，否则安卓平台会出现显示不正确的问题
-            headerTitleAlign:"center"
+            headerTitleAlign:"center",
+
+            // 设置透明：在“我”页会透明
+            headerTransparent: Mine? true:false,
+
+
           })}
         />
 
         {/* 动态详情页 */}
-        <Stack.Screen name="Knowledge" component={KnowledgeScreen} />
+        
         
         {/* 论坛详情页 */}
+
         {/* 百科内容页 */}
         {/* 消息列表页 */}
         {/* 关注列表页 */}
         {/* 宠物页 */}
         {/* 购物车页 */}
+        {/* 我-设置页 */}
+        <Stack.Screen name="Settings" component={SettingScreen} />
+        {/* 签到页 */}
+        <Stack.Screen name="Checkin" component={CheckinScreen} />
+        {/* 购物车页 */}
 
       </Stack.Navigator>
-      </NavigationContainer>
     );
   }
 })
-
-
-
-
-
-
-function KnowledgeScreen({ navigation }) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Knowledge screen</Text>
-        <Button
-          title="Go to Details"
-          onPress={() => navigation.navigate('Discover')}
-        />
-      </View>
-    );
-  }

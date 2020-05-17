@@ -10,9 +10,9 @@ import {ThemeContext} from '../appearance/theme/theme-context-provider'
 import SupportingTabs from './community-top-tabs'
 
 import CommunitySearchScreen from '../screens/community-search-screen'
-import PediaSearchScreen from '../screens/pedia-search-screen'
+import FindSearchScreen from '../screens/find-search-screen'
 import MineScreen from '../screens/mine-screen'
-import PediaScreen from '../screens/pedia-screen'
+import FindScreen from '../screens/find-screen'
 
 import Logo from "../../res/icon/pawn.svg";
 
@@ -53,8 +53,8 @@ export default class MainTabs extends Component {
               }}
               lazy={false}  // 这里是否使用lazy还有待研究
             >   
-                <Tab.Screen name="Pedia" component={Pedia} />
                 <Tab.Screen name="Community" component={Community} />
+                <Tab.Screen name="Find" component={Find} />
                 <Tab.Screen name="Mine" component={MineScreen} />
             </Tab.Navigator>
         );
@@ -80,20 +80,21 @@ class Community extends Component {
     );}
 }
 
-const PediaStack = createStackNavigator();
+const FindStack = createStackNavigator();
 
-class Pedia extends Component {
+class Find extends Component {
     render() {
       return (
-        <PediaStack.Navigator>
+        <FindStack.Navigator>
+
           {/* 主显示页 */}
-          <PediaStack.Screen name="Pedia-Display" component={PediaScreen} 
+          <FindStack.Screen name="Find-Display" component={FindScreen} 
           options={{headerShown:false}}/>
           {/* 搜索页 */}
-          <PediaStack.Screen name="Pedia-Search" component={PediaSearchScreen}
+          <FindStack.Screen name="Find-Search" component={FindSearchScreen}
           options={{headerShown:false}}/>
   
-        </PediaStack.Navigator>
+        </FindStack.Navigator>
     );}
 }
 

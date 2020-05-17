@@ -2,36 +2,41 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux'
 
-import {
-    View,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
 
-import style_header from '../appearance/styles/style-header'
+import Icon from '../component/icon'
 
 // 虚拟宠物入口按钮
+
 export default connect (
     (state) => {return{path: state.nav.path}}
 )(class HeaderRight extends Component{
     render(){
-        let path = this.props.path
+
+        let path = this.props.path  // 获取当前导航状态
+
+        show = path=='Community-Search'
+                || path=='Find-Search'
         searching = path=='Community-Search'
-                || path=='Pedia-Search'
-        folded = path=='Pedia-Display'
+                || path=='Find-Search'
+        Mine = path=="Mine"
+                || path=="Settings" // 页面切换动画时仍然保持 Mine 页设置
+                || path=="Checkin"
+        folded = path=='Find-Display'
+                || Mine
                 || searching
+                
         return(
-            path=='Follow'         // 宠物图标仅在这些页面显示
-            || path=='Discover'
-            || path=='Discussion'
-            || path=='Pedia-Display'
-            || path=='Pedia-Search'
-            || path=='Mine'
-            ?<View style={[
-                // 搜索框的静态样式
-                style_header.petIcon_temp,
-                {backgroundColor:"white"},
-                {bottom:folded? 7.5:20} ,     // 偏移量是动态的。 7.5 = 20-25/2，25是header缩短量
-            ]}>
-            </View>:null
+            show? null:
+            <TouchableOpacity
+                style={{
+                    right:15,
+                    bottom:folded? 7.5:20}} // 偏移量是动态的。 7.5 = 20-25/2，25是header缩短量
+                onPress={this.props.onPress}>
+            
+                <Icon/>
+                
+            </TouchableOpacity>
         )
     }
 })
