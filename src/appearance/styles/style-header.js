@@ -2,39 +2,93 @@ import { StyleSheet } from 'react-native';
 import { TabActions } from '@react-navigation/native';
 
 var style_header= StyleSheet.create({
-    container:{
+    // 中间部分容器，在社区和寻找界面的样式：搜索框+导航条=80
+    // 高度为80，但同时也要在main—header-options设置高度为80
+    // 中间部分容器，在商城页面的样式：搜索框+圆形选项条=97
+    // 其长度不在这里设置，而是跟随内部组件的数量而变化
+    center_container:{
         alignItems: 'center'
     },
+
+    // 搜索框的容器，占高48
+    searching_bar_container:{
+        alignItems: 'center',
+        flexDirection:"row",
+        height: 48,
+    },
+    // 搜索框在正常状态下
     searcing_bar:{                  // 搜索框是一个输入框
-        width: 120,
-	    height: 14,
-        borderRadius: 7,
+        width: 240,
+	    height: 28,
+	    borderRadius: 14,
         fontSize: 17,
         textAlign:'center',
         paddingTop: 0,
         paddingBottom: 0,
     },
+    // 搜索框在搜索状态下
     searcing_bar_searching:{         // 搜索框在搜索状态下的样式
         right:5,                        // 偏移
-        width: 120,
-	    height: 14,
-        borderRadius: 7,
+        width: 280,
+	    height: 28,
+	    borderRadius: 14,
         fontSize: 17,
         paddingStart: 10,
         paddingTop: 0,
         paddingBottom: 0,
     },
-    cancel_button:{         // 取消按钮
+    // TabBar的容器的样式，高度32，横排，均匀分布
+    tab_bar_container:{
+        height:32,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-evenly"
+    },
+    // TabBar选项的总容器
+    tab_bar_item_container:{
+        width: 71,
+        height: 32,
+        alignItems:"center",
+        justifyContent:"center",
+    },
+    // TabBar选项的显示容器，要在代码中动态设置borderBottomColor来进行选中提示
+    tab_bar_item:{
+        width: 36,
+        height: 32,
+        alignItems:"center",
+        justifyContent:"center",
+        borderBottomWidth:2,
+    },
+    // TabBar选项的文字样式
+    tab_bar_item_text:{
+        //width: 36,
+	    //height: 12,
+	    //fontFamily: "Source Han Sans CN",
+	    fontSize: 14,
+	    lineHeight: 24,
+	    color: "#535353"
+    },
+    // 搜索取消按钮
+    cancel_button:{
         left:5,
-        height: 36,
-        width: 70,                     // 形状
-        borderRadius: 18,
+        height: 28,
+	    borderRadius: 14,
+        width: 70,
         fontSize: 17,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+	    backgroundColor: "#ffffff",
+	    shadowColor: "rgba(0, 0, 0, 0.10)",
+	    shadowOffset: {
+		    width: 0,
+		    height: 2
+	    },
+	    shadowRadius: 2,
+	    shadowOpacity: 1
     },
+    // 搜索取消按钮的字体
     cancel_button_text:{
-        fontSize: 15
+        fontSize: 14
     },
     messageIcon_temp:{
         left:15,

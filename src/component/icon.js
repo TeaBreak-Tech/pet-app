@@ -25,7 +25,7 @@ export default connect (
         let path = this.props.path  // 获取当前导航状态
         let name = this.props.name
 
-        radius = this.props.radius?this.props.radius:36 // 外部传入图标半径，默认36
+        radius = this.props.radius?this.props.radius:28 // 外部传入图标半径，默认36
 
         return (
             <View style={[
@@ -33,6 +33,8 @@ export default connect (
                 {width: radius,
                 height: radius,
                 borderRadius: radius/2,
+                borderWidth: 1,
+                borderColor: "gray",
                 backgroundColor:"white"},
             ]}>
             </View>

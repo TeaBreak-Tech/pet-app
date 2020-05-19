@@ -2,6 +2,7 @@
 
 // 引入外部依赖
 import React, { Component } from 'react';
+import { SafeAreaView } from 'react-native';
 import 'react-native-gesture-handler'; //不知道有没有用
 
 
@@ -17,19 +18,22 @@ import RootDrawer from './navigators/root-drawer'
 
 // 使用输出 App类 的形式作为程序入口
 export default class App extends Component {
+  
   render() {
     // 两层包装：
     // 使用 Context.provider 封装，
     // 使用 Provider 封装应用，传入 Store 对象
     return (
+      <SafeAreaView style={{flex:1}}>
       <ThemeContextProvider >
         <StoreProvider>
           
-            {/* 用根导航器 navigatior/IndexNav.js 作为下一级入口 */}
+            {/* 用根导航器 RootDrawer 作为下一级入口 */}
             <RootDrawer/>
           
         </StoreProvider>
       </ThemeContextProvider>
+      </SafeAreaView>
       
     );
   }

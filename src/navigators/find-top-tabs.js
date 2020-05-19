@@ -1,14 +1,13 @@
-// 辅助导航
+// 寻找板块的辅助导航
 
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
-
-import DiscoverScreen from '../screens/discover-screen'
-import FollowScreen from '../screens/follow-screen'
-import DiscussionScreen from '../screens/discussion-screen'
+// Children
+import FeedScreen from '../screens/feed-screen'
+import NearbyScreen from '../screens/nearby-screen'
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -24,11 +23,10 @@ export default class SupportingTabs extends React.Component {
 
         return (
             <Tab.Navigator
-                initialRouteName="Discover"
+                initialRouteName="Feed"
                 tabBarOptions={{showLabel:false,style:{height:0}}}>
-                <Tab.Screen name="Discover" component={DiscoverScreen}/>
-                <Tab.Screen name="Follow" component={FollowScreen}/>
-                <Tab.Screen name="Discussion" component={DiscussionScreen}/>  
+                <Tab.Screen name="Feed" component={FeedScreen}/>
+                <Tab.Screen name="Nearby" component={NearbyScreen}/> 
             </Tab.Navigator>
         );
     }
