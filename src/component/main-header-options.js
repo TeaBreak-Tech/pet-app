@@ -1,24 +1,21 @@
+// Imports
 import React from 'react';
-import { View, Text } from 'react-native';
 
+// Children
 import HeaderCenter from './header-center'
 import HeaderLeft from '../component/header-left'
 import HeaderRight from '../component/header-right'
 
+// Tools
+import {safeAreaFromTop} from '../tools/scale'
+
 function MainHeaderOptions (test,navigation,theme,settings){
-    height = settings.header_height
+    // 在此处加上状态栏高度（只需加这一次）
+    height = settings.header_height+safeAreaFromTop()
     return({
     headerTitle: () => (<HeaderCenter navigation={navigation}/>),
-    headerLeft: () => (<HeaderLeft
-        onPress={()=>path=='Mine'?
-        navigation.navigate('Checkin'):  // 签到按钮
-        navigation.navigate('Checkin')   // 宠物按钮
-    }/>),
-    headerRight: () => (<HeaderRight 
-        onPress={()=>path=='Mine'?
-        navigation.navigate('Checkin'):  // 签到按钮
-        navigation.navigate('Checkin')   // 宠物按钮
-    }/>),
+    headerLeft: () => (<HeaderLeft onPress={()=>navigation.openDrawer()}/>),
+    headerRight: () => (<HeaderRight onPress={()=>navigation.navigate('Checkin')}/>),
     headerTitleAlign:"center",
 
     headerStyle: {

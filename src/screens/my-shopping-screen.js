@@ -2,11 +2,13 @@
 import React from 'react';
 import { View, Text } from 'react-native'
 
-function AllSearchResultScreen() {
+// 我的商城
+function MyShoppingScreen() {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>All Search Rersult, text:</Text>
+            <Text>My Shopping</Text>
         </View>
     );
 }
-export default AllSearchResultScreen
+
+export default MyShoppingScreen

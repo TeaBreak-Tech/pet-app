@@ -71,7 +71,6 @@ class HeaderCenter extends Component{
                 {/* 搜索框及取消按钮 */}
                 {search_bar_shown?
                 <View style={style.searching_bar_container}>
-
                     {/* 搜索框 */}
                     <TextInput
                         ref='input'
@@ -123,16 +122,15 @@ class HeaderCenter extends Component{
 
                     </TouchableOpacity>
                     :null}
-
                 </View>
                 :null}
 
                 {/* 自定义样式的辅助导航,循环列出选项 */}
                 {tab_bar_shown?
-                <View style={[style.tab_bar_container,{width:375}]}>
+                <View style={style.tab_bar_container}>
                     {tab_item.map((item,index)=>{
                         return(
-                        <TouchableOpacity onPress={()=>{this.props.navigation.navigate(item.to)}}>
+                        <TouchableOpacity onPress={()=>{this.props.navigation.navigate(item.to)}} key={index}>
                             <View style={style.tab_bar_item_container}>
                                 <View style={[
                                     style.tab_bar_item,

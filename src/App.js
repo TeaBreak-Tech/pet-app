@@ -24,7 +24,6 @@ export default class App extends Component {
     // 使用 Context.provider 封装，
     // 使用 Provider 封装应用，传入 Store 对象
     return (
-      <SafeAreaView style={{flex:1}}>
       <ThemeContextProvider >
         <StoreProvider>
           
@@ -33,8 +32,6 @@ export default class App extends Component {
           
         </StoreProvider>
       </ThemeContextProvider>
-      </SafeAreaView>
-      
     );
   }
 };

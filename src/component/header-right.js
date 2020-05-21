@@ -18,7 +18,8 @@ export default connect (
 
         let path = this.props.path  // 获取当前导航状态
         height = judgePath(path).header_height
-        shown = judgePath(path).header_button_shown
+        // 若未设置透明度，根据路径判断是否显示，否则，只要没有完全透明就要显示
+        shown = (this.props.opacity==null)?judgePath(path).header_button_shown:(this.props.opacity>0)
                 
         return(
             shown?

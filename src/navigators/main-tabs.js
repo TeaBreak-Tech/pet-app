@@ -11,6 +11,7 @@ import CommunityTopTabs from './community-top-tabs'
 import FindTopTabs from './find-top-tabs'
 import SearchScreen from '../screens/search-screen'
 import MineScreen from '../screens/mine-screen'
+//import Demo from '../screens/scroll-demo'
 
 
 import Logo from "../../res/icon/pawn.svg";
@@ -54,11 +55,13 @@ export default class MainTabs extends Component {
             >   
                 <Tab.Screen name="Community" component={CommunityTopTabs} />
                 <Tab.Screen name="Find" component={Find} />
+                
                 <Tab.Screen name="Mine" component={MineScreen} />
             </Tab.Navigator>
         );
     }
 }
+//<Tab.Screen name="Demo" component={Demo} />
 
 const FindStack = createStackNavigator();
 

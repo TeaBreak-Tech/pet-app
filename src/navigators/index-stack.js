@@ -5,8 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 // Children
 import MainHeaderOptions from '../component/main-header-options'
 import MainTabs from './main-tabs'
-import SettingScreen from '../screens/setting-screen'
+import SettingsScreen from '../screens/settings-screen'
 import CheckinScreen from '../screens/checkin-screen'
+import MyShoppingScreen from '../screens/my-shopping-screen'
+import VirtualPetScreen from '../screens/virtual-pet-screen';
+import InboxScreen from '../screens/inbox-screen'
+import EditProfileScreen from '../screens/edit-profile-screen'
 
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
@@ -27,9 +31,17 @@ function IndexStack({path}) {
                 {/* APP 主页面 */}
                 <Stack.Screen name="Main" component={MainTabs} options={({navigation})=>(MainHeaderOptions(12,navigation,theme,judgePath(path)))}/>
                 {/* 我-设置页 */}
-                <Stack.Screen name="Settings" component={SettingScreen}/>
+                <Stack.Screen name="Settings" component={SettingsScreen}/>
                 {/* 签到页 */}
                 <Stack.Screen name="Checkin" component={CheckinScreen}/>
+                {/* 我的商城 */}
+                <Stack.Screen name="My-Shopping" component={MyShoppingScreen}/>
+                {/* 虚拟宠物页 */}
+                <Stack.Screen name="Virtual-Pet" component={VirtualPetScreen}/>
+                {/* 消息页 */}
+                <Stack.Screen name="Inbox" component={InboxScreen}/>
+                {/* 个人信息编辑页 */}
+                <Stack.Screen name="Edit-Profile" component={EditProfileScreen}/>
     
                 </Stack.Navigator>
             )}

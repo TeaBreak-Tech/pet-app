@@ -13,6 +13,8 @@
 │       │   ├── Marcket-Display
 │       │   └── Marcket-Search
 │       ├── Mine
+│       │   ├── My-Publish
+│       │   └── My-Pet
 │       └── Find
 │           ├── Find-Display
 │           │   ├── Feed
@@ -77,7 +79,7 @@ function PathJudger(path){
                 header_transparent:false,
                 header_button_shown:false,
             })
-        case 'Mine':
+        case 'Mine':case 'My-Publish':case'My-Pet':case'My-Favorite':case'Virtual-Pet':case'My-Shopping':case'Inbox':case'Checkin':case'Settings':case'Edit-Profile':
             return({
                 header_type:'mine',
                 header_height:48,
@@ -86,7 +88,7 @@ function PathJudger(path){
                 shop_class_bar_shown:false,
                 tab_bar_shown:false,
                 header_transparent:true,
-                header_button_shown:true,
+                header_button_shown:false,
             })
         case 'Feed':
             return({
@@ -112,14 +114,14 @@ function PathJudger(path){
             })
         default:
             return({
-                header_type:'community',
+                header_type:'default',
                 header_height:80,
-                search_bar_shown:true,
+                search_bar_shown:false,
                 searching:false,
                 shop_class_bar_shown:false,
-                tab_bar_shown:true,
+                tab_bar_shown:false,
                 header_transparent:false,
-                header_button_shown:true,
+                header_button_shown:false,
             })
             
     }
