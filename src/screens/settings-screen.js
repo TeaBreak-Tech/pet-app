@@ -1,12 +1,13 @@
-// 设置页首页
-
+// Imports
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import {
     View,
     Text,
     StyleSheet,
 } from "react-native";
+
+// Context
+import { connect } from 'react-redux'
 
 // 从 Redux 获取 state 的方法 （用于获取登陆状态以决定是否添加登出键）
 const mapStateToProps = (state) => {
@@ -19,9 +20,7 @@ const mapStateToProps = (state) => {
 
 // 输出主页面
 // 将获取state的方法和dispatch的方法与输出类关联
-export default connect (
-    mapStateToProps
-)(class SettingScreen extends Component {
+class SettingScreen extends Component {
 
     render() {
         
@@ -40,8 +39,9 @@ export default connect (
             </Text>
         </View>
     );}
-})
+}
 
+export default connect (mapStateToProps)(SettingScreen)
 
 
 

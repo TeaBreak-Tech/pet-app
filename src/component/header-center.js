@@ -87,7 +87,8 @@ class HeaderCenter extends Component{
                         // 将搜索框的信息存入 state
                         onChangeText={(text) => this.setState({text})}
                         // 默认内容
-                        defaultValue="搜索"
+                        defaultValue=""
+                        placeholder="搜索"
 
                         // 搜索栏获取焦点时
                         onFocus={()=>{

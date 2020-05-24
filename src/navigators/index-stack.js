@@ -26,12 +26,12 @@ function IndexStack({path}) {
     return (
         <ThemeContext.Consumer>
             {theme=>(
-                <Stack.Navigator initialRouteName="Main" mode= "modal">
+                <Stack.Navigator initialRouteName="Main" headerMode="screen">
 
                 {/* APP 主页面 */}
                 <Stack.Screen name="Main" component={MainTabs} options={({navigation})=>(MainHeaderOptions(12,navigation,theme,judgePath(path)))}/>
                 {/* 我-设置页 */}
-                <Stack.Screen name="Settings" component={SettingsScreen}/>
+                <Stack.Screen name="Settings" component={SettingsScreen} options={{title:"设置",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 签到页 */}
                 <Stack.Screen name="Checkin" component={CheckinScreen}/>
                 {/* 我的商城 */}

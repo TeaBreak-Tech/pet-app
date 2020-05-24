@@ -12,3 +12,8 @@ const { StatusBarManager } = NativeModules;
 export function safeAreaFromTop() {
     return StatusBarManager.HEIGHT;
 }
+
+// 返回屏幕宽度
+export function screenWidth(){
+    return Dimensions.get('window').width
+}

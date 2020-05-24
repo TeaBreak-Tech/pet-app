@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 const images = [
-  "https://images.unsplash.com/photo-1556740749-887f6717d7e4",
+  "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=187649172,1956357065&fm=26&gp=0.jpg",
   "https://images.unsplash.com/photo-1556740749-887f6717d7e4",
   "https://images.unsplash.com/photo-1556740749-887f6717d7e4",
   "https://images.unsplash.com/photo-1556740749-887f6717d7e4",

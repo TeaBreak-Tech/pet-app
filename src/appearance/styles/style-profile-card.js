@@ -65,6 +65,7 @@ var style_profile_card= StyleSheet.create({
         flexDirection:"row",
         width:300,
         height:80,
+        marginBottom:20,
     },
     // 底部每个选项的容器
     bottom_item_container:{

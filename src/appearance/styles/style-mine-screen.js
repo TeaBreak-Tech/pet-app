@@ -11,80 +11,59 @@ var style_header= StyleSheet.create({
     },
     // TabBar的容器的样式，高度32，横排，均匀分布
     tab_bar_container:{
-        height:32,
+        height:60,
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-evenly"
     },
     // TabBar选项的总容器
     tab_bar_item_container:{
-        width: 42,
+        width: 50,
         height: 60,
         alignItems:"center",
         justifyContent:"center",
     },
-    // TabBar选项的显示容器，要在代码中动态设置borderBottomColor来进行选中提示
+    // TabBar选项的显示容器，
     tab_bar_item:{
-        width: 42,
+        width: 50,
         height: 60,
         alignItems:"center",
-        justifyContent:"center",
-        borderBottomWidth:2,
+        justifyContent:"flex-start",
     },
     // TabBar选项的文字样式
     tab_bar_item_text:{
         //width: 36,
 	    //height: 12,
 	    //fontFamily: "Source Han Sans CN",
-	    fontSize: 10,
-	    lineHeight: 24,
+	    fontSize: 12,
+	    lineHeight: 20,
 	    color: "#535353"
     },
-    // 搜索取消按钮
-    cancel_button:{
-        left:5,
-        height: 28,
-	    borderRadius: 14,
-        width: 70,
-        fontSize: 17,
-        alignItems: 'center',
-        justifyContent: 'center',
-	    backgroundColor: "#ffffff",
-	    shadowColor: "rgba(0, 0, 0, 0.10)",
-	    shadowOffset: {
-		    width: 0,
-		    height: 2
-	    },
-	    shadowRadius: 2,
-	    shadowOpacity: 1
+    // 搜索栏
+    search_bar_container:{
+        marginLeft:22,
+        marginRight:22,
+        flexDirection:"row",
+        borderRadius:10,
+        justifyContent:"center",
     },
-    // 搜索取消按钮的字体
-    cancel_button_text:{
-        fontSize: 14
-    },
-    messageIcon_temp:{
-        left:15,
-        width: 36,  
-        height: 36,
-        borderRadius: 18,
-    },
-    petIcon_temp:{
-        right:15,
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-    },
-    tab_item:{               // 是一个文本类型
-        fontSize:15,
-        color:"white"
-    },
-    tab_item_focused:{               // 是一个文本类型
+    search_input_searching:{
+        flex:1,
         fontSize:17,
-        color:"white"
+        textAlign:'left',
+        padding:5,
     },
-    tab_separator:{
-        fontSize:20,
-        color:"white",
+    search_input_unsearching:{
+        flex:1,
+        fontSize:17,
+        textAlign:"center",
+    },
+    // 取消键
+    cancel_container:{
+        height:30,
+        width:70,
+        alignItems:"center",
+        justifyContent:"center",
     }
 });
 

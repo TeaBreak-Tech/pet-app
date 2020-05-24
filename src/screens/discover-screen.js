@@ -4,10 +4,13 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
+    TextInput,
     Button,
     StatusBar,
 } from "react-native"
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
+
+import style from '../appearance/styles/style-header'
 
 export default class DiscoverScreen extends Component {
     // 订阅 ThemeContext
@@ -22,6 +25,7 @@ export default class DiscoverScreen extends Component {
                 backgroundColor={theme.basic}
                 hidden={false}/>
             <Text>This is Discover Screen</Text>
+            
             
         </View>
     );}
