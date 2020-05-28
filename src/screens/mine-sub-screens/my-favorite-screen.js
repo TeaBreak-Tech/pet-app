@@ -12,7 +12,7 @@ import {
 } from 'react-native'
 
 // Children
-import MyPublishItem from '../../component/my-publish-item'
+import MyFavoriteItem from '../../component/my-favorite-item'
 // Context
 import { ThemeContext } from '../../appearance/theme/theme-context-provider';
 // Style
@@ -22,16 +22,16 @@ getRandomData = () => {
     return new Array(100).fill('').map((item, index) => {
       return {
         id:index+1,
-        title: 'Title ' + (index + 1),
+        title: '标题' + (index + 1),
         images:[
           {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590150539755&di=5a30b5270fcf91969102730c5ea7103e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309203626_qgnvp.thumb.700_0.jpeg"},
         ],
-        detail: 'foiqmf pmql;mp 3mo ip1mp3 1m 3fk1m ,fnjhs oudgo nekdmk amfie qmv vqeq feq hdionoiq\nfmkpqmpkes  dmsakmq da.',
+        detail: '这里是简短的内容',
       };
     });
 };
 
-function MyPublishScreen() {
+function MyFavoriteScreen() {
 
     const [show_search, setShowSearch] = React.useState(false);
     const [searching, setSearching] = React.useState(false);
@@ -203,7 +203,7 @@ function MyPublishScreen() {
             //zoomScale={2}
             onScroll={(event)=>{
               //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<-10&&(!show_search)){
+              if(event.nativeEvent.contentOffset.y<-70&&(!show_search)){
                 barIn()
               }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
                 setShowSearch(false)
@@ -220,7 +220,7 @@ function MyPublishScreen() {
             data={getRandomData()}
             scrollEnabled={this.state.scrollable}
             showsVerticalScrollIndicator={true}
-            renderItem={({ item }) => <MyPublishItem item={item} key={item.id}/>}
+            renderItem={({ item }) => <MyFavoriteItem item={item} key={item.id}/>}
             keyExtractor={item => item.id}
             style={{top:0}}
         >
@@ -232,4 +232,4 @@ function MyPublishScreen() {
     </ThemeContext.Consumer>
     );
 }
-export default  MyPublishScreen
+export default  MyFavoriteScreen

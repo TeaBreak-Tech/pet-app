@@ -5,6 +5,9 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 // Context
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
+// Children
+import Icon from '../component/icon';
+
 // Style
 import style from '../appearance/styles/style-my-favorite-item'
 
@@ -14,25 +17,31 @@ function MyFavoriteItem(props) {
     return (
         <ThemeContext.Consumer>
             {theme=>
-                <View style={[style.container,{backgroundColor:theme.background}]}>
-                    <View style={style.header_container}>
-                        <Text style={[style.time_text,{color:theme.text}]}>2020-04-25 18:30</Text>
-                        <TouchableOpacity style={style.edit_button}>
-                            <Text style={[style.edit_icon_temp,{color:theme.text_emphasis}]}>...</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={style.center_container}>
-                        <Image source={{ uri: item.images[0].uri }} style={style.image}/>
-                    </View>
-                    <View style={style.bottom_container}>
-                        <View style={style.detail_text_container}>
-                            <Text style={[style.detail_text,{color:theme.text_emphasis}]}>All Search Rersult, title:{item.title}daqd{item.detail}</Text>
+                <TouchableOpacity style={[style.container,{backgroundColor:theme.background}]}>
+                    <View style={style.separator_container}>
+                    <View style={style.main_container}>
+                    <View style={style.left_container}>
+                    <Image source={{ uri: item.images[0].uri }} style={style.image}/>
+                        <View style={style.content_container}>
+                            <Text style={[style.sytle_text,{color:theme.text_emphasis}]}>title:{item.title}</Text>
+                            <Text style={[style.sytle_text,{color:theme.text}]}>content:{item.detail}</Text>
+                            <View style={style.popularity_container}>
+                                <Icon radius={13}></Icon>
+                                <Text style={[style.popularity_text,{color:theme.text}]}>浏览量 1.2K</Text>
+                            </View>
+                            
                         </View>
                     </View>
-                </View>
+                    <TouchableOpacity style={style.share_button_container}>
+                        <Text style={[style.share_button_text,{color:theme.text}]}>分享</Text>
+                        <Icon></Icon>
+                    </TouchableOpacity>
+                    </View>
+                    </View>
+                </TouchableOpacity>
             }
         </ThemeContext.Consumer>
     );
 }
 
-export default MyPublishItem
+export default MyFavoriteItem

@@ -11,54 +11,60 @@ var style_header= StyleSheet.create({
         //alignItems: 'center',
         justifyContent: 'center',
     },
-    header_container:{
-        //flex:1,
-        height:40,
-        justifyContent: "space-between",
-        marginLeft:22,
-        marginRight:22,
+    separator_container:{
+        flex: 1,
+        justifyContent: 'center',
+        marginHorizontal:22,
+        borderBottomColor: "#adadad",
+        borderBottomWidth: 1,
+    },
+    main_container:{
+        marginVertical:10,
+        flexDirection: 'row',
+        flex:1,
+        alignItems:"center",
+        justifyContent:"space-between",
+        //backgroundColor:"red"
+    },
+    left_container:{
         flexDirection:"row",
         alignItems:"center",
-        //backgroundColor:"green",
-    },
-    time_text:{
-        
-    },
-    edit_button:{
-        height:40,
-        width:50,
-        //backgroundColor:"blue",
-        alignItems:"flex-end",
-        justifyContent:"center"
-    },
-    edit_icon_temp:{
-        fontSize:20,
-        lineHeight:10,
-    },
-    center_container:{
-        //backgroundColor:"red",
-        alignItems: 'center',
     },
     image:{
-        borderRadius:5,
         //marginLeft:22,
-        width: screenWidth()-44,
-	    height: 200,
-	    borderRadius: 5,
+        width: 80,
+	    height: 54,
     },
-    bottom_container:{
-        //backgroundColor:"blue",
-        height:50
+    content_container:{
+        marginLeft:10,
+        flexDirection:'column'
     },
-    detail_text_container:{
-        marginLeft: 22,
-        marginTop: 10,
-        marginRight: 22,
-        //backgroundColor:"blue",
-    },
-    detail_text:{
+    sytle_text:{
         fontSize: 14,
+	    lineHeight: 20,
     },
+    popularity_container:{
+        flexDirection:'row',
+        alignItems:"center"
+    },
+    popularity_text:{
+        fontSize: 14,
+	    lineHeight: 20,
+        marginLeft:5,
+    },
+    share_button_container:{
+        alignItems:"center",
+        justifyContent:"center",
+        flexDirection:"row",
+    },
+    share_button_text:{
+        fontSize: 14,
+        lineHeight: 20,
+        marginRight:5,
+    }
+    
+
+    
 });
 
 export default style_header

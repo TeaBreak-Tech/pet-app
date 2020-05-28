@@ -10,7 +10,7 @@ import CheckinScreen from '../screens/checkin-screen'
 import MyShoppingScreen from '../screens/my-shopping-screen'
 import VirtualPetScreen from '../screens/virtual-pet-screen';
 import InboxScreen from '../screens/inbox-screen'
-import EditProfileScreen from '../screens/edit-profile-screen'
+import EditProfileScreen from '../screens/mine-sub-screens/edit-profile-screen'
 
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
@@ -31,17 +31,23 @@ function IndexStack({path}) {
                 {/* APP 主页面 */}
                 <Stack.Screen name="Main" component={MainTabs} options={({navigation})=>(MainHeaderOptions(12,navigation,theme,judgePath(path)))}/>
                 {/* 我-设置页 */}
-                <Stack.Screen name="Settings" component={SettingsScreen} options={{title:"设置",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
+                <Stack.Screen name="Settings" component={SettingsScreen}
+                    options={{title:"设置",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 签到页 */}
-                <Stack.Screen name="Checkin" component={CheckinScreen}/>
+                <Stack.Screen name="Checkin" component={CheckinScreen}
+                    options={{title:"签到",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 我的商城 */}
-                <Stack.Screen name="My-Shopping" component={MyShoppingScreen}/>
+                <Stack.Screen name="My-Shopping" component={MyShoppingScreen}
+                    options={{title:"我的商城",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 虚拟宠物页 */}
-                <Stack.Screen name="Virtual-Pet" component={VirtualPetScreen}/>
+                <Stack.Screen name="Virtual-Pet" component={VirtualPetScreen}
+                    options={{title:"虚拟宠物",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 消息页 */}
-                <Stack.Screen name="Inbox" component={InboxScreen}/>
+                <Stack.Screen name="Inbox" component={InboxScreen}
+                    options={{title:"消息",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
                 {/* 个人信息编辑页 */}
-                <Stack.Screen name="Edit-Profile" component={EditProfileScreen}/>
+                <Stack.Screen name="Edit-Profile" component={EditProfileScreen}
+                    options={{title:"账号信息",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
     
                 </Stack.Navigator>
             )}

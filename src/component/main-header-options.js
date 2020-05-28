@@ -15,7 +15,7 @@ function MainHeaderOptions (test,navigation,theme,settings){
     return({
     headerTitle: () => (<HeaderCenter navigation={navigation}/>),
     headerLeft: () => (<HeaderLeft onPress={()=>navigation.openDrawer()}/>),
-    headerRight: () => (<HeaderRight onPress={()=>navigation.navigate('Checkin')}/>),
+    headerRight: () => (<HeaderRight onPress={()=>navigation.navigate('Virtual-Pet')}/>),
     headerTitleAlign:"center",
 
     headerStyle: {

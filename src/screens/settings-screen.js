@@ -28,7 +28,7 @@ const mapStateToProps = (state) => {
 
 // 输出主页面
 // 将获取state的方法和dispatch的方法与输出类关联
-function SettingsScreen(){
+function SettingsScreen({navigation}){
     const [alarm, setAlarm] = React.useState(false);
     const [theme_name, setThemeName] = React.useState(true);
 
@@ -41,7 +41,7 @@ function SettingsScreen(){
                         <Text style={style.title_text}>
                             账号信息
                         </Text>
-                        <TouchableOpacity style={style.edit_indicator}>
+                        <TouchableOpacity style={style.edit_indicator} onPress={()=>{navigation.navigate("Edit-Profile")}}>
                             <Text style={style.edit_indicator_icon}>...</Text>
                         </TouchableOpacity>
                     </View>
