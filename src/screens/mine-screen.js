@@ -12,6 +12,8 @@ import {
     Animated,
     TouchableOpacity,
     ImageBackground,
+    Modal,
+    Share,
 } from "react-native";
 
 // Context
@@ -84,6 +86,7 @@ class MineScreen extends Component {
         if(this.pan.y._value>(-this.state.distance/2)){
             Animated.spring(this.pan,{
                 toValue: {x:0,y:0},
+                speed:3,
                 useNativeDriver: false,
             }).start()
             this.setState({scrollable:false})
@@ -95,6 +98,7 @@ class MineScreen extends Component {
     bounceUp = (then)=>{
         Animated.spring(this.pan,{
             toValue: {x:0,y:-this.state.distance},
+            tension:1,
             useNativeDriver: false,
         }).start(then)
         this.setState({scrollable:true})
@@ -127,6 +131,7 @@ class MineScreen extends Component {
 
         return (
         <View>
+            
             <ImageBackground source={{ uri: background }} style={{height:380}}>
             <View style={[style.header_container,{height:this.state.header+48}]}>
                 <HeaderLeft onPress={()=>this.props.navigation.navigate('Settings')} opacity={1}/>
