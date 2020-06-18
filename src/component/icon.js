@@ -26,6 +26,7 @@ export default connect (
         let name = this.props.name
 
         radius = this.props.radius?this.props.radius:28 // 外部传入图标半径，默认36
+        let outer_style = this.props.style?this.props.style:{};
 
         return (
             <View style={[
@@ -36,6 +37,7 @@ export default connect (
                 borderWidth: 1,
                 borderColor: "gray",
                 backgroundColor:"white"},
+                outer_style,
             ]}>
             </View>
         )

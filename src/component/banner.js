@@ -32,29 +32,25 @@ export default function App() {
           style={styles.scrollViewStyle}
           pagingEnabled
           showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event([
-            {
+          onScroll={Animated.event(
+            [{
               nativeEvent: {
                 contentOffset: {
                   x: scrollX
                 }
               }
-            }
-          ])}
+            }],
+            {useNativeDriver:false}
+          )}
           scrollEventThrottle={1}
         >
           {images.map((image, imageIndex) => {
             return (
               <View
-                style={{ width: windowWidth, height: 250 }}
+                style={{ width: windowWidth-10, height: 110 }}
                 key={imageIndex}
               >
                 <ImageBackground source={{ uri: image }} style={styles.card}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.infoText}>
-                      {"Image - " + imageIndex}
-                    </Text>
-                  </View>
                 </ImageBackground>
               </View>
             );
@@ -86,20 +82,18 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
     justifyContent: "center"
   },
   scrollContainer: {
-    height: 300,
+    height: 120,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor:"white",
   },
   card: {
     flex: 1,
     marginVertical: 4,
-    marginHorizontal: 16,
-    borderRadius: 5,
     overflow: "hidden",
     alignItems: "center",
     justifyContent: "center"
