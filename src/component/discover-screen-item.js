@@ -21,7 +21,7 @@ function DiscoverScreenItem(props) {
     return (
         <ThemeContext.Consumer>
             {theme=>
-                <View style={[ { backgroundColor:theme.background }, style.card_container ]}>
+                <TouchableOpacity style={[ { backgroundColor:theme.background }, style.card_container ]}>
                     <Image source={{ uri: item.images[0].uri }} style={ style.image }/>
                     <ProfileLine
                         style={{position:"absolute",top:'5%',left:'5%'}}
@@ -62,15 +62,15 @@ function DiscoverScreenItem(props) {
                         ))}
                     </View>
 
-                        <View style={ style.third_line_container }>
-                            <View style={_style.view_count_container}>
-                                <Icon radius={16}/>
-                                <Text style={[ _style.view_count_text, { color:theme.text }]}>
-                                    浏览量 {item.interactions.view}
-                                </Text>
-                            </View>
+                    <View style={ style.third_line_container }>
+                        <View style={_style.view_count_container}>
+                            <Icon radius={16}/>
+                            <Text style={[ _style.view_count_text, { color:theme.text }]}>
+                                浏览量 {item.interactions.view}
+                            </Text>
                         </View>
-                </View>
+                    </View>
+                </TouchableOpacity>
             }
         </ThemeContext.Consumer>
     );

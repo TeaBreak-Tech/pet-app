@@ -12,7 +12,6 @@ import {
 } from 'react-native'
 
 // Children
-import NearbyItem from '../component/nearby-item'
 import Icon from '../component/icon'
 import Banner from '../component/banner'
 import DiscoverScreenItem from '../component/discover-screen-item'

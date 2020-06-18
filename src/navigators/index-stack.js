@@ -11,6 +11,7 @@ import MyShoppingScreen from '../screens/my-shopping-screen'
 import VirtualPetScreen from '../screens/virtual-pet-screen';
 import InboxScreen from '../screens/inbox-screen'
 import EditProfileScreen from '../screens/mine-sub-screens/edit-profile-screen'
+import PublishEditScreen from '../screens/publish-edit-screen'
 
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
@@ -48,7 +49,10 @@ function IndexStack({path}) {
                 {/* 个人信息编辑页 */}
                 <Stack.Screen name="Edit-Profile" component={EditProfileScreen}
                     options={{title:"账号信息",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
-    
+                {/* 发布页 */}
+                <Stack.Screen name="Publish-Eidt" component={PublishEditScreen}
+                    options={{title:"发布动态",headerTitleAlign:"center",headerBackTitle:"取消",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
+                
                 </Stack.Navigator>
             )}
         </ThemeContext.Consumer>

@@ -21,6 +21,7 @@ class FloatingButton extends Component{
 
         let outer_style = this.props.style?this.props.style:{};
 
+        navigate_to = this.props.navigate_to?this.props.navigate_to:'Publish-Eidt' // 外部传入图标半径，默认36
         radius = this.props.radius?this.props.radius:60 // 外部传入图标半径，默认36
         opacity = this.props.opacity?this.props.opacity:0
         shown = opacity<100
@@ -28,6 +29,9 @@ class FloatingButton extends Component{
         return shown?(
             <TouchableOpacity 
                 activeOpacity={0.9}
+                onPress={()=>{
+                    this.props.navigation.navigate(navigate_to)
+                }}
                 style={[
                 // 默认是一个圆形
                 {width: radius,
