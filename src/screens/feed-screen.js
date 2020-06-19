@@ -43,7 +43,7 @@ getRandomDataFeed = () => {
     });
 };
 
-function FeedScreen() {
+function NearbyScreen() {
 
     const [menu_shown, setMenuShown] = React.useState(true);
 
@@ -231,7 +231,7 @@ function FeedScreen() {
                             }}>
                                 <Text
                                     style={{
-                                        fontSize: 12,
+                                        ontSize: 12,
 	                                    lineHeight: 20,
                                         color: "#ffffff",
                                         fontWeight:"bold",
@@ -322,4 +322,4 @@ function FeedScreen() {
         </ThemeContext.Consumer>
     );
 }
-export default  FeedScreen
+export default  NearbyScreen

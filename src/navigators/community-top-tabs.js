@@ -35,7 +35,7 @@ export default class SupportingTabs extends React.Component {
                 <Tab.Screen name="Discussion" component={DiscussionScreen}/>  
             </Tab.Navigator>
 
-            <FloatingButton style={{zIndex:3,position: 'absolute',bottom:'10%',left: '80%',}} navigation={this.props.navigation}/>
+            <FloatingButton style={{zIndex:3,position: 'absolute',bottom:'10%',left: '80%',}}/>
             </View>
         );
     }
