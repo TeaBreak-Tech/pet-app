@@ -16,8 +16,7 @@ var style_header= StyleSheet.create({
 		    height: 2
 	    },
 	    shadowRadius: 3,
-        shadowOpacity: 1,
-        elevation:3
+	    shadowOpacity: 1
         },
     image:{
         height:200,borderTopLeftRadius:10,borderTopRightRadius:10

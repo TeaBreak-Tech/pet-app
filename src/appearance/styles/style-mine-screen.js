@@ -18,7 +18,7 @@ var style_header= StyleSheet.create({
     },
     // TabBar选项的总容器
     tab_bar_item_container:{
-        width: 70,
+        width: 50,
         height: 60,
         alignItems:"center",
         justifyContent:"center",

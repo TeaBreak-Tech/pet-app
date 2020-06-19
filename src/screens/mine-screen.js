@@ -17,7 +17,7 @@ import {
 } from "react-native";
 
 // Context
-import { connect, useStore } from 'react-redux'
+import { connect } from 'react-redux'
 import { changeText } from '../redux/action/action'
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
@@ -66,6 +66,9 @@ class MineScreen extends Component {
     }
 
     pan = new Animated.ValueXY();
+    //to = new Animated.ValueXY();
+    //b = Animated.diffclamp(this.pan,-200,90)
+    //to = Animated.divide(this.pan,2);
     getRecord = ()=>{
         // 起到记录上次移动位置值的作用，将当前位置设置为新的偏移值，避免闪回
         this.pan.setOffset({
@@ -73,57 +76,25 @@ class MineScreen extends Component {
             y: this.pan.y._value
         });
     }
-    recordNewOffset = Animated.event([
+    recordNewOffset=Animated.event([
         null,
         { dx: this.pan.x, dy: this.pan.y }],
         {useNativeDriver:false}
     )
-    inertial = (event, gestureState)=>{
-        console.log("Release Velocity: ",gestureState.vy)
-        console.log("Horizontal Position: ",gestureState.moveX)
+    bounce = ()=>{
         this.pan.flattenOffset();
-        let v = gestureState.vy
-        let abv = Math.abs(v)
-        let d = v*100
-        let d0 = this.pan.y._value
-        let to = d0+d
-        console.log("from",d0,"to position: ",d0+d)
-
-        const stopAnim = Animated.decay(this.pan,{
-            velocity:v,
-            deceleration:0.99,
-            useNativeDriver: false,
-        })
-        /*const stopAnim = Animated.spring(this.pan,{
-            toValue: {x:0,y:to},
-            speed:abv,
-            bounciness:0,
-            useNativeDriver: false,
-        })*/
-        
-        const backAnim = Animated.spring(this.pan,{
-            toValue: {x:0,y:0},
-            friction:10,
-            tension:5,
-            useNativeDriver: false,
-        })
-
-        const toTopAnim = Animated.spring(this.pan,{
-            toValue: {x:0,y:-this.state.distance},
-            friction:10,
-            tension:5,
-            useNativeDriver: false,
-        })
-
-        if(to<-this.state.distance){
-            this.setState({scrollable:true})
-            Animated.parallel([stopAnim,toTopAnim]).start(()=>{console.log(this.pan.y._value)})
-        }else if(to>0){
+        if(this.pan.y._value>(-this.state.distance/2)){
+            Animated.spring(this.pan,{
+                toValue: {x:0,y:0},
+                speed:3,
+                useNativeDriver: false,
+            }).start()
             this.setState({scrollable:false})
-            Animated.sequence([stopAnim,backAnim]).start(()=>{console.log(this.pan.y._value)})
+        }else{
+            this.bounceUp()
         }
+        
     }
-
     bounceUp = (then)=>{
         Animated.spring(this.pan,{
             toValue: {x:0,y:-this.state.distance},
@@ -133,16 +104,16 @@ class MineScreen extends Component {
         this.setState({scrollable:true})
     }
     panResponder1 = PanResponder.create({
-        onMoveShouldSetPanResponder: () => !(this.pan.y._value<=-this.state.distance),
+        onMoveShouldSetPanResponder: () => !this.state.scrollable,
         onPanResponderGrant: this.getRecord,
         onPanResponderMove: this.recordNewOffset,
-        onPanResponderRelease: this.inertial,
+        onPanResponderRelease: this.bounce,
     });
     panResponder2 = PanResponder.create({
         onMoveShouldSetPanResponder: () => true,
         onPanResponderGrant: this.getRecord,
         onPanResponderMove: this.recordNewOffset,
-        onPanResponderRelease: this.inertial,
+        onPanResponderRelease: this.bounce,
     });
 
     render() {
@@ -151,14 +122,8 @@ class MineScreen extends Component {
         // Animation
         const { text,isLogin,path } = this.props;
         const translate = this.pan.y.interpolate({
-            inputRange:[-10000,-this.state.distance,0,500],
-            outputRange:[-this.state.distance,-this.state.distance,0,80],
-            extrapolate: "clamp"
-        })
-
-        const offset = this.pan.y.interpolate({
-            inputRange:[-this.state.distance,0,500],
-            outputRange:[-this.state.distance,0,80],
+            inputRange:[-this.state.distance,80],
+            outputRange:[-this.state.distance,80],
             extrapolate: "clamp"
         })
 
@@ -179,7 +144,7 @@ class MineScreen extends Component {
                 height:this.state.s_height,top:-100-20}}>
                 <Animated.View
                     style={{height:this.state.s_height,transform: [{translateY: translate}]}}
-                    >
+                    {...this.panResponder1.panHandlers}>
                 <View style={{
                     height:100,
                     backgroundColor:"white",
@@ -187,8 +152,7 @@ class MineScreen extends Component {
                     borderTopRightRadius:30,
                     justifyContent:"flex-end"
                     }}
-                >
-                    <View style={{height:30}} {...this.panResponder2.panHandlers} collapsable={false}/>
+                    {...this.panResponder2.panHandlers}>
                     <View style={{
                         height:60,
                         flexDirection:"row",
@@ -222,8 +186,7 @@ class MineScreen extends Component {
                                             height: 2
                                         },
                                         shadowRadius: 2,
-                                        shadowOpacity: 1,
-                                        elevation:3
+                                        shadowOpacity: 1
                                     }}>
                                         {/*<Icon radius={32}/>*/}
                                     </View>
@@ -237,11 +200,10 @@ class MineScreen extends Component {
                         )})}
 
                     </View>
-                    <View style={{height:10,justifyContent:"flex-end"}} {...this.panResponder2.panHandlers}>
+                    <View style={{height:10,justifyContent:"flex-end"}}>
                         <View style={{marginLeft:22,marginRight:22,height:1,backgroundColor:theme.text}}></View>
                     </View>
                 </View>
-                <View collapsable={false} {...this.panResponder1.panHandlers} style={{flex:1}}>
                 <Tab.Navigator
                     initialRouteName="MyPublish"
                     tabBarOptions={{showLabel:false,style:{height:0}}}>
@@ -249,7 +211,6 @@ class MineScreen extends Component {
                     <Tab.Screen name="My-Pet" component={NearbyScreen}/>
                     <Tab.Screen name="My-Favorite" component={MyFavoriteScreen.bind(this)}/>
                 </Tab.Navigator>
-                </View>
                 </Animated.View>
             </View>
         </View>
