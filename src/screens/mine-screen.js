@@ -79,28 +79,12 @@ class MineScreen extends Component {
         {useNativeDriver:false}
     )
     inertial = (event, gestureState)=>{
-        console.log("Release Velocity: ",gestureState.vy)
-        console.log("Horizontal Position: ",gestureState.moveX)
         this.pan.flattenOffset();
-        let v = gestureState.vy
-        let abv = Math.abs(v)
-        let d = v*100
-        let d0 = this.pan.y._value
-        let to = d0+d
-        console.log("from",d0,"to position: ",d0+d)
-
-        const stopAnim = Animated.decay(this.pan,{
-            velocity:v,
+        Animated.decay(this.pan,{
+            velocity:gestureState.vy,
             deceleration:0.99,
             useNativeDriver: false,
-        })
-        /*const stopAnim = Animated.spring(this.pan,{
-            toValue: {x:0,y:to},
-            speed:abv,
-            bounciness:0,
-            useNativeDriver: false,
-        })*/
-        
+        }).start()
         const backAnim = Animated.spring(this.pan,{
             toValue: {x:0,y:0},
             friction:10,
@@ -114,13 +98,15 @@ class MineScreen extends Component {
             tension:5,
             useNativeDriver: false,
         })
-
+        let to = this.pan.y._value+gestureState.vy*100
         if(to<-this.state.distance){
             this.setState({scrollable:true})
-            Animated.parallel([stopAnim,toTopAnim]).start(()=>{console.log(this.pan.y._value)})
+            toTopAnim.start()
         }else if(to>0){
             this.setState({scrollable:false})
-            Animated.sequence([stopAnim,backAnim]).start(()=>{console.log(this.pan.y._value)})
+            backAnim.start()
+        }else{
+            this.setState({scrollable:false})
         }
     }
 

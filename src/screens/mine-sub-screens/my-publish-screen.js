@@ -124,7 +124,7 @@ function MyPublishScreen() {
             //zoomScale={2}
             onScroll={(event)=>{
               //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<-1&&(!show_search)){
+              if(event.nativeEvent.contentOffset.y<=0&&(!show_search)){
                 barIn()
               }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
                 setShowSearch(false)
