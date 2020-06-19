@@ -19,7 +19,7 @@ import { ThemeContext } from '../../appearance/theme/theme-context-provider';
 import style from '../../appearance/styles/style-mine-screen'
 
 getRandomData = () => {
-    return new Array(100).fill('').map((item, index) => {
+    return new Array(10).fill('').map((item, index) => {
       return {
         id:index+1,
         title: 'Title ' + (index + 1),
@@ -124,7 +124,7 @@ function MyPublishScreen() {
             //zoomScale={2}
             onScroll={(event)=>{
               //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<-10&&(!show_search)){
+              if(event.nativeEvent.contentOffset.y<-1&&(!show_search)){
                 barIn()
               }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
                 setShowSearch(false)
