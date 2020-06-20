@@ -27,7 +27,7 @@ getRandomDataDiscussion = () => {
             id:index+1,
             title: "新手铲屎官应该注意什么",
             images:[
-                {id:1,uri:"http://pics5.baidu.com/feed/c2cec3fdfc0392457ed93e5e2cb634c47d1e2518.jpeg?token=775793ce57cc4201f3f14c9594c3c11e"},
+                {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592556493733&di=407136381c360447fbd22e9d42215ea4&imgtype=0&src=http%3A%2F%2Fb.zol-img.com.cn%2Fsoft%2F6%2F434%2FcerHmI26yCoo.jpg"},
             ],
             follower:1120,
         };

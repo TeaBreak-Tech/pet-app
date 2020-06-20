@@ -66,6 +66,7 @@ var style_header= StyleSheet.create({
         },
         shadowRadius: 2,
         shadowOpacity: 1,
+        elevation:3,
     },
     share_button_container:{
         marginRight:16
@@ -84,6 +85,7 @@ var style_header= StyleSheet.create({
         shadowOpacity: 1,
         alignItems:"center",
         justifyContent:"center",
+        elevation:3,
     },
     image_footer_container:{
         height:50,

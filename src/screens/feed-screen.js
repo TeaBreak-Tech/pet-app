@@ -26,7 +26,7 @@ getRandomDataFeed = () => {
             id:index+1,
             title: '标题' + (index + 1),
             images:[
-                {id:1,uri:"http://pics5.baidu.com/feed/c2cec3fdfc0392457ed93e5e2cb634c47d1e2518.jpeg?token=775793ce57cc4201f3f14c9594c3c11e"},
+                {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592556493733&di=872f7624d7801d59c8857f1e05bf7acf&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2Fday_120912%2F12091204401a7d53280e5a7080.jpg"},
             ],
             distance:"550m",
             location:"新华东路124号",
@@ -188,7 +188,8 @@ function NearbyScreen() {
                                             height: 2
                                         },
                                         shadowRadius: 2,
-                                        shadowOpacity: 1
+                                        shadowOpacity: 1,
+                                        elevation:3,
                                     }}>
                                         {/*<Icon radius={32}/>*/}
                                     </View>

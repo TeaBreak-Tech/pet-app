@@ -10,6 +10,7 @@ import Icon from '../component/icon'
 
 // Tools
 import judgePath from '../tools/path_judger'
+import {screenWidth} from '../tools/scale'
 
 export default connect (
     (state) => {return{path: state.nav.path}}
@@ -24,7 +25,7 @@ export default connect (
         return(
             shown?
             <TouchableOpacity
-                style={{height:height,right:30,top:10}}
+                style={{height:height,right:screenWidth()*0.07,top:10}}
                 onPress={this.props.onPress}>
             
                 <Icon/>

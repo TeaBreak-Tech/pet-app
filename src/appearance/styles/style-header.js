@@ -1,5 +1,6 @@
 import { StyleSheet, BackHandler } from 'react-native';
-import { TabActions } from '@react-navigation/native';
+import { TabActions } from '@react-navigation/native'; 
+import {screenWidth} from '../../tools/scale'
 
 var style_header= StyleSheet.create({
     // 中间部分容器，在社区和寻找界面的样式：搜索框+导航条=80
@@ -25,7 +26,7 @@ var style_header= StyleSheet.create({
     },
     // 搜索框在正常状态下
     searcing_bar:{                  // 搜索框是一个输入框
-        width: 240,
+        width: screenWidth()*0.6,
 	    height: 28,
 	    borderRadius: 14,
         fontSize: 17,
@@ -36,7 +37,7 @@ var style_header= StyleSheet.create({
     // 搜索框在搜索状态下
     searcing_bar_searching:{         // 搜索框在搜索状态下的样式
         right:5,                        // 偏移
-        width: 280,
+        width: screenWidth()*0.7,
 	    height: 28,
 	    borderRadius: 14,
         fontSize: 17,
@@ -47,7 +48,7 @@ var style_header= StyleSheet.create({
     // TabBar的容器的样式，高度32，横排，均匀分布
     tab_bar_container:{
         height:32,
-        width:280,
+        width:screenWidth()*0.6,
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between"
@@ -99,13 +100,13 @@ var style_header= StyleSheet.create({
         fontSize: 14
     },
     messageIcon_temp:{
-        left:15,
+        left:screenWidth()*0.1,
         width: 36,  
         height: 36,
         borderRadius: 18,
     },
     petIcon_temp:{
-        right:15,
+        right:screenWidth()*0.1,
         width: 36,
         height: 36,
         borderRadius: 18,

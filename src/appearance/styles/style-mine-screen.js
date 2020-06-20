@@ -52,11 +52,17 @@ var style_header= StyleSheet.create({
         fontSize:17,
         textAlign:'left',
         padding:5,
+
+        paddingTop: 0,
+        paddingBottom: 0,
     },
     search_input_unsearching:{
         flex:1,
         fontSize:17,
         textAlign:"center",
+
+        paddingTop: 0,
+        paddingBottom: 0,
     },
     // 取消键
     cancel_container:{

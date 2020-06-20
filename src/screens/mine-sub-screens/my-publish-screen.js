@@ -80,7 +80,7 @@ function MyPublishScreen() {
               {show_search?<TextInput
                 style={[
                   searching?style.search_input_searching:style.search_input_unsearching,
-                  {color:theme.text}
+                  {color:theme.text,includeFontPadding:false,textAlignVertical:'center'}
                 ]}
                 spellCheck={false}
                 placeholder="搜索我的发布"

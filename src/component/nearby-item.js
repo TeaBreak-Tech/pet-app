@@ -17,10 +17,11 @@ function NearbyItem(props) {
     const moreAnim = useRef(new Animated.Value(260)).current;
     const [ more_shown, setMoreShown ] = React.useState(false)
     item = props.item
+    const count = item.services.length
 
     const showMore = () => {
         Animated.spring(moreAnim, {
-            toValue: 260+(item.services.length-2)*40,
+            toValue: 260+(count-2)*40,
             speed:10,
             useNativeDriver:false,
         }).start(()=>{});

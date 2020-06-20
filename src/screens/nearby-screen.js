@@ -20,30 +20,32 @@ import { ThemeContext } from '../appearance/theme/theme-context-provider';
 import style from '../appearance/styles/style-nearby-screen'
 import icon from '../component/icon';
 
-getRandomDataNearby = () => {
-    return new Array(100).fill('').map((item, index) => {
-      return {
-        id:index+1,
-        title: '标题' + (index + 1),
-        images:[
-          {id:1,uri:"http://www.cdwxpc.cn/cmsfile/kindeditor/attached/image/20171102/20171102112420_5305.jpg"},
-        ],
-        distance:"550m",
-        location:"新华东路124号",
-        discription: '这里是简短的介绍内容：啊呢哦弄哦i美女客服女看出v的那我去我就你的口味v口味默认v我们v人能不能',
-        services:[
-          {title:"服务1",price:122},
-          {title:"服务2",price:255},
-          {title:"服务3",price:234},
-          {title:"服务4",price:145},
-          {title:"服务5",price:275},
-          {title:"服务6",price:1823},
-        ],
-      };
-    });
-};
+
 
 function NearbyScreen() {
+
+    const getRandomNearby = () => {
+      return new Array(100).fill('').map((item, index) => {
+        return {
+          id:index+1,
+          title: '标题' + (index + 1),
+          images:[
+            {id:1,uri:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=879378779,1619059974&fm=15&gp=0.jpg"},
+          ],
+          distance:"550m",
+          location:"新华东路124号",
+          discription: '这里是简短的介绍内容：啊呢哦弄哦i美女客服女看出v的那我去我就你的口味v口味默认v我们v人能不能',
+          services:[
+            {title:"服务1",price:122},
+            {title:"服务2",price:255},
+            {title:"服务3",price:234},
+            {title:"服务4",price:145},
+            {title:"服务5",price:275},
+            {title:"服务6",price:1823},
+          ],
+        };
+      });
+    };
 
     const [show_menu, setShowMenu] = React.useState(true);
     const menuAnim = useRef(new Animated.Value(90)).current;
@@ -138,7 +140,8 @@ function NearbyScreen() {
                           height: 2
                         },
                         shadowRadius: 2,
-                        shadowOpacity: 1
+                        shadowOpacity: 1,
+                        elevation:3,
                       }}>
                       {/*<Icon radius={32}/>*/}
                       </View>
@@ -272,7 +275,7 @@ function NearbyScreen() {
                 setShowOptions(false)
               }
             }}
-            data={getRandomDataNearby()}
+            data={getRandomNearby()}
             showsVerticalScrollIndicator={true}
             renderItem={({ item }) => <NearbyItem item={item} key={item.id}/>}
             keyExtractor={item => item.id}

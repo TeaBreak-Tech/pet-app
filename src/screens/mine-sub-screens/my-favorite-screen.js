@@ -115,7 +115,7 @@ function MyFavoriteScreen() {
               {show_search?<TextInput
                 style={[
                   searching?style.search_input_searching:style.search_input_unsearching,
-                  {color:theme.text}
+                  {color:theme.text,includeFontPadding:false,textAlignVertical:'center'}
                 ]}
                 spellCheck={false}
                 placeholder="搜索我的收藏"
@@ -184,7 +184,7 @@ function MyFavoriteScreen() {
                         
                     }}>
                       {type==null?<Text style={{color:theme.text,
-                        fontSize:14,}}>{item.title}</Text>:
+                        fontSize:14,}}>{show_types?item.title:null}</Text>:
                       item.type==type?<Text style={{
                         color:theme.text,
                         fontSize:14,
@@ -197,13 +197,36 @@ function MyFavoriteScreen() {
           </View>
         <View style={{zIndex:1}}>
         <FlatList
-            ListHeaderComponent={()=><View style={{height:60,backgroundColor:theme.background}}></View>}
+            ListHeaderComponent={()=>
+              <View style={{height:60,backgroundColor:theme.background}}>
+                {types.map((item,index)=>{return(
+                  <Animated.View style={{flex:item.type==type?1:typeAnim}}>
+                  <TouchableOpacity 
+                    key={index}
+                    style={{
+                      flex:1,
+                      height:60,
+                    }}
+                    onPress={()=>{
+                      if (type!=item.type){
+                        setType(item.type)
+                        tabFocus()
+                      }else{
+                        tabUnfocus()
+                        setType(null)
+                      }
+                    }}
+                  >
+                  </TouchableOpacity>
+                  </Animated.View>
+                )})}
+              </View>}
             //onRefresh={()=>{alert("refresh")}}
             //refreshing={true}
             //zoomScale={2}
             onScroll={(event)=>{
               //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<-70&&(!show_search)){
+              if(event.nativeEvent.contentOffset.y<=0&&(!show_search)){
                 barIn()
               }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
                 setShowSearch(false)
