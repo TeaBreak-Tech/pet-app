@@ -22,7 +22,7 @@ function MyPublishItem(props) {
                         </TouchableOpacity>
                     </View>
                     <View style={style.center_container}>
-                        <Image source={{ uri: item.images[0].uri }} style={style.image}/>
+                        <Image source={{ uri: item.images[0].uri }} style={style.image} />
                     </View>
                     <View style={style.bottom_container}>
                         <View style={style.detail_text_container}>

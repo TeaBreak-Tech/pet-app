@@ -126,7 +126,7 @@ function MyFavoriteItem(props) {
                     <View style={style.separator_container}>
                     <View style={style.main_container}>
                     <View style={style.left_container}>
-                    <Image source={{ uri: item.images[0].uri }} style={style.image}/>
+                    <Image source={{ uri: item.images[0].uri }?{ uri: item.images[0].uri }:require('./loading.jpg')} style={style.image}/>
                         <View style={style.content_container}>
                             <Text style={[style.sytle_text,{color:theme.text_emphasis}]}>title:{item.title}</Text>
                             <Text style={[style.sytle_text,{color:theme.text}]}>content:{item.detail}</Text>

@@ -9,6 +9,7 @@ import {
     RefreshControl,
     TextInput,
     Animated,
+    SectionList,
 } from 'react-native'
 
 // Children
@@ -31,114 +32,85 @@ getRandomData = () => {
     });
 };
 
-function Item({ title }) {
-    return (
-      <View style={styles.item} key={title}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
-    );
-}
-
 function MyPublishScreen() {
 
-    const [show_search, setShowSearch] = React.useState(false);
-    const [searching, setSearching] = React.useState(false);
-    const [search_text, setSearchText] = React.useState("");
-    const barAnim = useRef(new Animated.Value(0)).current;
-    const marginAnim = Animated.multiply(barAnim,0.5)
+  const scrollAnim = useRef(new Animated.Value(0)).current;
 
-    const barIn = () => {
-      // Will change fadeAnim value to 1 in 5 seconds
-      setShowSearch(Animated.spring(barAnim, {
-        toValue: 30,
-        speed:25,
-        useNativeDriver:false,
-      }).start(()=>{setShowSearch(true)}));
-    };
-    const barOut = () => {
-      // Will change fadeAnim value to 0 in 5 seconds
-      Animated.spring(barAnim, {
-        toValue: 0,
-        speed:25,
-        useNativeDriver:false,
-      }).start();
-    };
+  const [searching, setSearching] = React.useState(false);
+  const [search_text, setSearchText] = React.useState("");
 
-    return (
-      <View>
-        <ThemeContext.Consumer>
-          {theme=>
-          <View style={{
-            backgroundColor:theme.background
-          }}>
-            <Animated.View style={[style.search_bar_container,{
-              height: barAnim,
-              marginTop: marginAnim,
-              marginBottom: marginAnim,
-              backgroundColor:theme.background_emphasis,
-            }]}>
-              {show_search?<TextInput
-                style={[
-                  searching?style.search_input_searching:style.search_input_unsearching,
-                  {color:theme.text,includeFontPadding:false,textAlignVertical:'center'}
-                ]}
-                spellCheck={false}
-                placeholder="搜索我的发布"
-                defaultValue={search_text}
-                onChangeText={(text) => setSearchText(text)}
-                onFocus={()=>{
-                  setSearching(true)
+  const searchingBar = () => { return (
+    <ThemeContext.Consumer>
+      {theme=>
+        <View style={{
+          backgroundColor:theme.background
+        }}>
+          <Animated.View style={[style.search_bar_container,{
+            height: 30,
+            marginTop: 15,
+            backgroundColor:theme.background_emphasis,
+          }]}>
+            <TextInput
+              style={[
+                {color:theme.text,includeFontPadding:false,textAlignVertical:'center'},
+                searching?style.search_input_searching:style.search_input_unsearching,
+              ]}
+              focusable={this.state.crollable}
+              spellCheck={false}
+              placeholder="搜索我的发布"
+              defaultValue={search_text}
+              onChangeText={(text) => setSearchText(text)}
+              onFocus={()=>{
+                setSearching(true)
+                if(!this.state.scrollable){
+                  this.bounceUp()
+                }
+              }}
+              onEndEditing={()=>{
+                //Refresh the results
+              }}
+              returnKeyType="search"
+            />
+            {searching?
+              <TouchableOpacity
+                style={style.cancel_container}
+                onPress={()=>{
+                  setSearching(false)
+                  setSearchText("")
                 }}
-                onEndEditing={()=>{
-                  //Refresh the results
-                }}
-                //clearButtonMode='while-editing'
-                returnKeyType="search"
-              ></TextInput>:null}
-              {show_search?searching?
-                <TouchableOpacity
-                  style={style.cancel_container}
-                  onPress={()=>{
-                    setSearching(false)
-                    setShowSearch(false)
-                    barOut()
-                    setSearchText("")
-                  }}
-                >
-                  <Text style={{color:theme.text,fontSize:17}}>取消</Text>
-                </TouchableOpacity>:null:null}
-            </Animated.View>
-          </View>
-          } 
-        </ThemeContext.Consumer>
-        <FlatList
-            ListHeaderComponent={()=>(
-              <ThemeContext.Consumer>
-                {theme=>
-                  <View style={{height:10,backgroundColor:theme.background}}></View>
-                } 
-              </ThemeContext.Consumer>
-            )}
-            //onRefresh={()=>{alert("refresh")}}
-            //refreshing={true}
-            //zoomScale={2}
-            onScroll={(event)=>{
-              //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<=0&&(!show_search)){
-                barIn()
-              }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
-                setShowSearch(false)
-                barOut()
-              }
-            }}
-            data={getRandomData()}
-            scrollEnabled={this.state.scrollable}
-            showsVerticalScrollIndicator={true}
-            renderItem={({ item }) => <MyPublishItem item={item} key={item.id}/>}
-            keyExtractor={item => item.id}
-        >
-        </FlatList>
-      </View>
+              >
+                <Text style={{color:theme.text,fontSize:17}}>取消</Text>
+              </TouchableOpacity>:null}
+          </Animated.View>
+        </View>
+      }
+    </ThemeContext.Consumer>
+  )}
+
+  const space = () => (
+    <ThemeContext.Consumer>
+      {theme=>
+        <View style={{height:10,backgroundColor:theme.background}}></View>
+      } 
+    </ThemeContext.Consumer>
+  )
+
+  return (
+    <SectionList
+        keyboardDismissMode="on-drag"
+        renderSectionHeader={ ({ section: { title } })=> title===0 ? searchingBar() : space() }
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollAnim } } }],
+          { useNativeDriver:false }
+        )}
+        sections={[ { title:0, data:[] } ,{ title:1, data:getRandomData() } ]}
+        data={ getRandomData() }
+        scrollEnabled={ this.state.scrollable }
+        showsVerticalScrollIndicator={ true }
+        renderItem={({ item, index }) => <MyPublishItem item={item} key={index}/> }
+        keyExtractor={ item => item.id }
+      >
+      </SectionList>
     );
 }
 export default  MyPublishScreen

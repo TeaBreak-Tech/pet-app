@@ -1,5 +1,5 @@
 // Inmport
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import {
     View,
     Text,
@@ -62,8 +62,12 @@ class MineScreen extends Component {
                 {key:'我的收藏',to:'My-Favorite',auto_bounce:true},
                 {key:'我的商城',to:'My-Shopping',auto_bounce:false},
                 {key:'消息通知',to:'Inbox',auto_bounce:false},
-            ]
+            ],
+            favorite_searching:false,
+            publish_searching:false,
+            search_text:"",
         }
+        //this.ref = React.createRef()
     }
 
     pan = new Animated.ValueXY();
@@ -99,7 +103,12 @@ class MineScreen extends Component {
             this.setState({scrollable:true})
             toTopAnim.start()
         }else{
-            this.setState({scrollable:false})
+            this.setState({
+                scrollable:false,
+                favorite_searching:false,
+                publish_searching:false,
+                search_text:""
+            })
             backAnim.start()
         }
     }

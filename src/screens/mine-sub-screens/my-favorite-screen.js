@@ -9,6 +9,7 @@ import {
     RefreshControl,
     TextInput,
     Animated,
+    SectionList,
 } from 'react-native'
 
 // Children
@@ -21,8 +22,8 @@ import style from '../../appearance/styles/style-mine-screen'
 getRandomData = () => {
     return new Array(100).fill('').map((item, index) => {
       return {
-        id:index+1,
-        title: '标题' + (index + 1),
+        id:index + 2,
+        title: '标题' + (index + 2),
         images:[
           {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590150539755&di=5a30b5270fcf91969102730c5ea7103e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309203626_qgnvp.thumb.700_0.jpeg"},
         ],
@@ -33,226 +34,185 @@ getRandomData = () => {
 
 function MyFavoriteScreen() {
 
-    const [show_search, setShowSearch] = React.useState(false);
-    const [searching, setSearching] = React.useState(false);
-    const [search_text, setSearchText] = React.useState("");
-    const barAnim = useRef(new Animated.Value(0)).current;
-    const marginAnim = Animated.multiply(barAnim,0.5)
-    const types = [
-      {title:"动态",type:"moments"},
-      {title:"论坛",type:"discussions"},
-      {title:"设施",type:"facilities"},
-    ]
-    const [type, setType] = React.useState(null);
-    const typeAnim = useRef(new Animated.Value(1)).current;
-    const typeHideAnim = useRef(new Animated.Value(30)).current;
-    const [show_types, setShowTypes] = React.useState(true);
-    const typeHorizMarginAnim = Animated.multiply(typeAnim,5)
-    const typeVertMarginAnim = Animated.multiply(typeHideAnim,0.5)
+  const scrollAnim = useRef(new Animated.Value(0)).current;
+  const barHeightAnim = scrollAnim.interpolate({inputRange:[0,60],outputRange:[60,0],extrapolate: "clamp"})
+  const choiceHeightAnim = Animated.multiply(barHeightAnim,0.5)
+  const choiceOpacityAnim = scrollAnim.interpolate({inputRange:[0,20],outputRange:[1,0],extrapolate: "clamp"})
+  const [ type_text_shown, setTypeTextShown ] = React.useState(true)
 
-    const barIn = () => {
-      // Will change fadeAnim value to 1 in 5 seconds
-      setShowSearch(Animated.spring(barAnim, {
-        toValue: 30,
-        speed:25,
-        useNativeDriver:false,
-      }).start(()=>{setShowSearch(true)}));
-    };
-    const barOut = () => {
-      // Will change fadeAnim value to 0 in 5 seconds
-      Animated.spring(barAnim, {
-        toValue: 0.3,
-        speed:25,
-        useNativeDriver:false,
-      }).start();
-    };
-    const tabFocus = () => {
-      // Will change fadeAnim value to 0 in 5 seconds
-      Animated.spring(typeAnim, {
-        toValue: 0,
-        speed:25,
-        useNativeDriver:false,
-      }).start();
-    };
-    const tabUnfocus = () => {
-      // Will change fadeAnim value to 0 in 5 seconds
-      Animated.spring(typeAnim, {
-        toValue: 1,
-        speed:25,
-        useNativeDriver:false,
-      }).start(()=>{});
-    };
-    const hideTypes = () => {
-      Animated.spring(typeHideAnim, {
-        toValue: 0,
-        speed:25,
-        useNativeDriver:false,
-      }).start(()=>{});
-    }
-    const showTypes = () => {
-      Animated.spring(typeHideAnim, {
-        toValue: 30,
-        speed:25,
-        useNativeDriver:false,
-      }).start(()=>{});
-    }
+  const [searching, setSearching] = React.useState(false);
+  const [search_text, setSearchText] = React.useState("");
+  
+  const types = [
+    {title:"动态",type:"moments"},
+    {title:"论坛",type:"discussions"},
+    {title:"设施",type:"facilities"},
+  ]
+  const [type, setType] = React.useState(null);
+  const typeAnim = useRef(new Animated.Value(1)).current;
 
+  const tabFocus = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.spring(typeAnim, {
+      toValue: 0,
+      speed:25,
+      useNativeDriver:false,
+    }).start();
+  };
+  const tabUnfocus = () => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.spring(typeAnim, {
+      toValue: 1,
+      speed:25,
+      useNativeDriver:false,
+    }).start(()=>{});
+  };
 
-    return (
-      <ThemeContext.Consumer>
-        {theme=>
-        <View>
-        
-          <View style={{zIndex:2}}>
-            <View style={{
-              backgroundColor:theme.background
-            }}>
-            <Animated.View style={[style.search_bar_container,{
-              height: barAnim,
-              marginTop: marginAnim,
-              backgroundColor:theme.background_emphasis,
-            }]}>
-              {show_search?<TextInput
-                style={[
-                  searching?style.search_input_searching:style.search_input_unsearching,
-                  {color:theme.text,includeFontPadding:false,textAlignVertical:'center'}
-                ]}
-                spellCheck={false}
-                placeholder="搜索我的收藏"
-                defaultValue={search_text}
-                onChangeText={(text) => setSearchText(text)}
-                onFocus={()=>{
-                  setSearching(true)
+  const searchingBar = () => { return (
+    <ThemeContext.Consumer>
+      {theme=>
+        <View style={{
+          backgroundColor:theme.background
+        }}>
+          <Animated.View style={[style.search_bar_container,{
+            height: 30,
+            marginTop: 15,
+            backgroundColor:theme.background_emphasis,
+          }]}>
+            <TextInput
+              style={[
+                {color:theme.text,includeFontPadding:false,textAlignVertical:'center'},
+                searching?style.search_input_searching:style.search_input_unsearching,
+              ]}
+              focusable={this.state.scrollable}
+              spellCheck={false}
+              placeholder="搜索我的收藏"
+              defaultValue={search_text}
+              onChangeText={(text) => setSearchText(text)}
+              onFocus={()=>{
+                setSearching(true)
+                if(!this.state.scrollable){
+                  this.bounceUp()
+                }
+              }}
+              onEndEditing={()=>{
+                //Refresh the results
+              }}
+              returnKeyType="search"
+            />
+            {searching?
+              <TouchableOpacity
+                style={style.cancel_container}
+                onPress={()=>{
+                  setSearching(false)
+                  setSearchText("")
                 }}
-                onEndEditing={()=>{
-                  //Refresh the results
+              >
+                <Text style={{color:theme.text,fontSize:17}}>取消</Text>
+              </TouchableOpacity>:null}
+          </Animated.View>
+        </View>
+      }
+    </ThemeContext.Consumer>
+  )}
+
+  const selector = () => (
+    <ThemeContext.Consumer>
+      {theme=>
+        <Animated.View
+          style={{
+            height:type==null?barHeightAnim:60,
+            justifyContent:'center',
+            backgroundColor:theme.background
+          }}
+        >
+          <View style={{
+            flexDirection:"row",
+            marginHorizontal:17,
+          }}>
+            {types.map((item,index)=>{return(
+              <Animated.View 
+                style={{
+                  flex:item.type==type?1:typeAnim,
+                  marginHorizontal:3,
+                  backgroundColor:theme.background_emphasis,
+                  height:type===null?choiceHeightAnim:30,
+                  borderRadius:10,
                 }}
-                //clearButtonMode='while-editing'
-                returnKeyType="search"
-              ></TextInput>:null}
-              {show_search?searching?
-                <TouchableOpacity
-                  style={style.cancel_container}
+                key={index}
+              >
+                <TouchableOpacity 
+                  style={{
+                    flex:1,
+                    alignItems:"center",
+                    justifyContent:"center"
+                  }}
                   onPress={()=>{
-                    setSearching(false)
-                    setShowSearch(false)
-                    barOut()
-                    setSearchText("")
+                    if (type!=item.type){
+                      setType(item.type)
+                      tabFocus()
+                    }else{
+                      tabUnfocus()
+                      setType(null)
+                    } 
                   }}
                 >
-                  <Text style={{color:theme.text,fontSize:17}}>取消</Text>
-                </TouchableOpacity>:null:null}
-            </Animated.View>
-            </View>
-            <View style={{
-              height:0,
-                    //backgroundColor:"transparent"//theme.background
-                  }}>
-              <Animated.View style={{
-                    flexDirection:"row",
-                    marginLeft:17,
-                    marginRight:17,
-                    marginTop:typeVertMarginAnim,
-                    marginBottom:typeVertMarginAnim,
-                    
-              }}>
-                {types.map((item,index)=>{return(
-                  <Animated.View style={{
-                    flex:item.type==type?1:typeAnim,
-                    //width:typeAnim,
-                    backgroundColor:theme.background_emphasis,
-                    height:typeHideAnim,
-                    borderRadius:10,
-                    marginLeft:item.type==type?5:typeHorizMarginAnim,
-                    marginRight:item.type==type?5:typeHorizMarginAnim,
-                  }}
-                  key={index}>
-                    <TouchableOpacity 
+                  {type==null?(
+                    <Animated.Text 
                       style={{
-                        flex:1,
-                        alignItems:"center",
-                        justifyContent:"center"
-                      }}
-                      onPress={()=>{
-                        if (type!=item.type){
-                          setType(item.type)
-                          tabFocus()
-                        }else{
-                          tabUnfocus()
-                          setType(null)
-                        }
-                        
-                    }}>
-                      {type==null?<Text style={{color:theme.text,
-                        fontSize:14,}}>{show_types?item.title:null}</Text>:
-                      item.type==type?<Text style={{
                         color:theme.text,
                         fontSize:14,
-                      }}>已筛选：“{item.title}“，点击取消</Text>:null}
-                    </TouchableOpacity>
-                  </Animated.View>
-                )})}
+                        opacity:choiceOpacityAnim,
+                      }}
+                    >
+                      {item.title}
+                    </Animated.Text>
+                  ):(
+                    item.type==type?(
+                      <Text 
+                        style={{
+                          color:theme.text,
+                          fontSize:14,
+                        }}
+                      >
+                        已筛选：“{item.title}“，点击取消
+                      </Text>
+                    ):(null)
+                  )}
+                </TouchableOpacity>
               </Animated.View>
-            </View>
+            )})}
           </View>
-        <View style={{zIndex:1}}>
-        <FlatList
-            ListHeaderComponent={()=>
-              <View style={{height:60,backgroundColor:theme.background}}>
-                {types.map((item,index)=>{return(
-                  <Animated.View style={{flex:item.type==type?1:typeAnim}}>
-                  <TouchableOpacity 
-                    key={index}
-                    style={{
-                      flex:1,
-                      height:60,
-                    }}
-                    onPress={()=>{
-                      if (type!=item.type){
-                        setType(item.type)
-                        tabFocus()
-                      }else{
-                        tabUnfocus()
-                        setType(null)
-                      }
-                    }}
-                  >
-                  </TouchableOpacity>
-                  </Animated.View>
-                )})}
-              </View>}
-            //onRefresh={()=>{alert("refresh")}}
-            //refreshing={true}
-            //zoomScale={2}
-            onScroll={(event)=>{
-              //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<=0&&(!show_search)){
-                barIn()
-              }else if (event.nativeEvent.contentOffset.y>10&&(show_search)){
-                setShowSearch(false)
-                barOut()
-              }
-              if(event.nativeEvent.contentOffset.y>35&&show_types&&(type==null)){
-                hideTypes()
-                setShowTypes(false)
-              }else if (event.nativeEvent.contentOffset.y<30&&(!show_types)&&(type==null)){
-                showTypes()
-                setShowTypes(true)
-              }
-            }}
-            data={getRandomData()}
-            scrollEnabled={this.state.scrollable}
-            showsVerticalScrollIndicator={true}
-            renderItem={({ item }) => <MyFavoriteItem item={item} key={item.id}/>}
-            keyExtractor={item => item.id}
-            style={{top:0}}
-        >
-        </FlatList>
-        </View>
-        
-      </View>
-    }
+        </Animated.View>
+      }
     </ThemeContext.Consumer>
-    );
+  )
+
+  return (
+    <ThemeContext.Consumer>
+      {theme=>
+        <SectionList
+          keyboardDismissMode="on-drag"
+          renderSectionHeader={ ({ section: { title } })=> title===0 ? searchingBar() : selector() }
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollAnim } } }],
+            { listener: (event) => { // 异步监听列表的滚动位置
+                if ( event.nativeEvent.contentOffset.y>30&&type_text_shown ){ setTypeTextShown(false) }
+                else if ( event.nativeEvent.contentOffset.y<30&&!type_text_shown ){ setTypeTextShown(true) }
+              },
+              useNativeDriver:false,
+            }
+          )}
+          sections={[ { title:0, data:[] } ,{ title:1, data:getRandomData() } ]}
+          data={ getRandomData() }
+          scrollEnabled={ this.state.scrollable }
+          showsVerticalScrollIndicator={ true }
+          renderItem={({ item, index }) => <MyFavoriteItem item={item} key={index}/> }
+          keyExtractor={ item => item.id }
+        >
+        </SectionList>
+      }
+    </ThemeContext.Consumer>
+  );
 }
 export default  MyFavoriteScreen
