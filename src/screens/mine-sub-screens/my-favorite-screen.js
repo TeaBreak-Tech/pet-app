@@ -19,18 +19,8 @@ import { ThemeContext } from '../../appearance/theme/theme-context-provider';
 // Style
 import style from '../../appearance/styles/style-mine-screen'
 
-getRandomData = () => {
-    return new Array(100).fill('').map((item, index) => {
-      return {
-        id:index + 2,
-        title: '标题' + (index + 2),
-        images:[
-          {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590150539755&di=5a30b5270fcf91969102730c5ea7103e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309203626_qgnvp.thumb.700_0.jpeg"},
-        ],
-        detail: '这里是简短的内容',
-      };
-    });
-};
+// Tools
+import { getRandomData } from '../../tools/random-data'
 
 function MyFavoriteScreen() {
 

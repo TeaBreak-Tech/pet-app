@@ -18,19 +18,8 @@ import MyPublishItem from '../../component/my-publish-item'
 import { ThemeContext } from '../../appearance/theme/theme-context-provider';
 // Style
 import style from '../../appearance/styles/style-mine-screen'
-
-getRandomData = () => {
-    return new Array(10).fill('').map((item, index) => {
-      return {
-        id:index+1,
-        title: 'Title ' + (index + 1),
-        images:[
-          {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590150539755&di=5a30b5270fcf91969102730c5ea7103e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309203626_qgnvp.thumb.700_0.jpeg"},
-        ],
-        detail: 'foiqmf pmql;mp 3mo ip1mp3 1m 3fk1m ,fnjhs oudgo nekdmk amfie qmv vqeq feq hdionoiq\nfmkpqmpkes  dmsakmq da.',
-      };
-    });
-};
+// Tools
+import { getRandomData } from '../../tools/random-data'
 
 function MyPublishScreen() {
 
