@@ -17,11 +17,18 @@ import {screenWidth} from '../tools/scale'
 
 // 社区和寻找公用的搜索引擎页
 function DiscoverScreenItem(props) {
-    item = props.item
+    const item = props.item
+    const navigation = props.navigation
     return (
         <ThemeContext.Consumer>
             {theme=>
-                <View style={[ { backgroundColor:theme.background }, style.card_container ]}>
+                <TouchableOpacity 
+                    style={[ { backgroundColor:theme.background }, style.card_container ]}
+                    activeOpacity={0.9}
+                    onPress={()=>{
+                        navigation.navigate("Moment-Detail",{item:item})
+                    }}
+                >
                     <Image source={{ uri: item.images[0].uri }} style={ style.image }/>
                     <ProfileLine
                         style={{position:"absolute",top:'5%',left:'5%'}}
@@ -70,7 +77,7 @@ function DiscoverScreenItem(props) {
                                 </Text>
                             </View>
                         </View>
-                </View>
+                </TouchableOpacity>
             }
         </ThemeContext.Consumer>
     );

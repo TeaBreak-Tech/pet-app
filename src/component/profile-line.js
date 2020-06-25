@@ -28,38 +28,85 @@ class IconButton extends Component{
             signature:"您的养犬干货仓"
         }
 
-        container_style = this.props.style?this.props.style:{}
-        radius = this.props.radius?this.props.radius:18
-        signature = this.props.signature?this.props.signature:false
-        username_style = this.props.username_style?this.props.username_style:{
-            marginLeft:5,
-            fontSize: 12,
-            lineHeight: 17,
-            color: "#535353"
-        }
-        profile_picture_style = this.props.profile_picture_style?this.props.profile_picture_style:{}
-        marginLeft = this.props.marginLeft?this.props.marginLeft:0
+        let container_style = this.props.style?this.props.style:{}
+        let radius = this.props.radius?this.props.radius:18
+        let signature = this.props.signature?this.props.signature:false
+        let username_style = this.props.username_style?this.props.username_style:{}
+        let profile_picture_style = this.props.profile_picture_style?this.props.profile_picture_style:{}
+        let marginLeft = this.props.marginLeft?this.props.marginLeft:0
+        let additional_text = this.props.additional_text?this.props.additional_text:false
+        let additional_text_style = this.props.additional_text_style?this.props.additional_text_style:{}
+        let show_follow_button = this.props.show_follow_button?this.props.show_follow_button:false
 
         return (
-            <View style={[{
-                marginLeft:marginLeft,
-                height:24,
-                flexDirection:"row",
-                alignItems:"center",
+            <View 
+                style={[{
+                    flexDirection:'row',
+                    justifyContent:'space-between',
+                    alignItems:'center',
+                    marginLeft:marginLeft,
+                    minHeight:24,
                 },
-                container_style
-            ]}>
-                <View style={profile_picture_style}>
-                <Image source={{ uri: user.profile_picture_address }} style={{height:radius,width:radius,borderRadius:radius/2}}/>
+                container_style]}
+            >
+                <View 
+                    style={[{
+                        flexDirection:"row",
+                        alignItems:"center",
+                    }
+                ]}>
+                    <View style={profile_picture_style}>
+                    <Image source={{ uri: user.profile_picture_address }} style={{height:radius,width:radius,borderRadius:radius/2}}/>
+                    </View>
+                    <View style={{flexDirection:'column'}}>
+                        <View style={{flexDirection:"row",}}>
+                            <Text 
+                                numberOfLines={1} 
+                                style={[{
+                                        marginLeft:5,
+                                        fontSize: 12,
+                                        lineHeight: 17,
+                                        color: "#535353"
+                                    },
+                                    username_style,
+                                ]}
+                            >{user.username}</Text>
+                            {signature?<Text numberOfLines={1}
+                                style={{
+                                marginLeft:10,
+                                fontSize: 12,
+                                lineHeight: 17,
+                                color: "#707070"
+                            }}>{user.signature}</Text>:null}
+                        </View>
+                        {additional_text?<Text style={[{
+                            marginLeft:5,
+                            fontSize: 12,
+                            lineHeight: 17,
+                            color: "#707070"
+                        },additional_text_style
+                        ]}>{additional_text}</Text>:null}
+                    </View>
                 </View>
-                <Text numberOfLines={1} style={username_style}>{user.username}</Text>
-                {signature?<Text numberOfLines={1}
-                    style={{
-                    marginLeft:10,
-                    fontSize: 12,
-                    lineHeight: 17,
-                    color: "#707070"
-                }}>{user.signature}</Text>:null}
+                {show_follow_button?
+                    <TouchableOpacity 
+                        style={{
+                            width: 61,
+                            height: 20,
+                            borderRadius: 10,
+                            borderStyle: "solid",
+                            borderWidth: 1,
+                            borderColor: theme.basic_emphasis,
+                            justifyContent:'center',
+                            alignItems:'center',
+                        }}
+                        activeOpacity={0.5}
+                    >
+                        <Text style={{
+                            color: theme.basic_emphasis
+                        }}>关注</Text>
+                    </TouchableOpacity>
+                :null}
             </View>
         )
     }

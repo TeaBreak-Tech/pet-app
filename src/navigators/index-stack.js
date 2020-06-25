@@ -12,6 +12,7 @@ import VirtualPetScreen from '../screens/virtual-pet-screen';
 import InboxScreen from '../screens/inbox-screen'
 import EditProfileScreen from '../screens/mine-sub-screens/edit-profile-screen'
 import PublishEditScreen from '../screens/publish-edit-screen'
+import MomentDetailScreen from '../screens/moment-detail-screen'
 
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
@@ -52,6 +53,9 @@ function IndexStack({path}) {
                 {/* 发布页 */}
                 <Stack.Screen name="Publish-Edit" component={PublishEditScreen}
                     options={{title:"发布动态",headerTitleAlign:"center",headerBackTitle:"取消",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
+
+                <Stack.Screen name="Moment-Detail" component={MomentDetailScreen}
+                    options={{title:"动态详情",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
 
                 </Stack.Navigator>
             )}

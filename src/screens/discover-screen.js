@@ -1,3 +1,5 @@
+// 社区-发现页
+
 // Import
 import React, { useRef } from 'react';
 import {
@@ -22,7 +24,7 @@ import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Tools
 import { randomPublish } from '../tools/random-data';
 
-function NearbyScreen() {
+function DiscoverScreen({navigation}) {
 
     const [show_options, setShowOptions] = React.useState(false);
     const optionsAnim = useRef(new Animated.Value(1)).current;
@@ -170,7 +172,7 @@ function NearbyScreen() {
                     }
                     data={randomPublish(100)}
                     showsVerticalScrollIndicator={true}
-                    renderItem={({ item }) => <DiscoverScreenItem item={item} key={item.id}/>}
+                    renderItem={({ item }) => <DiscoverScreenItem item={item} key={item.id} navigation={navigation}/>}
                     keyExtractor={item => item.id}
                     style={{top:0}}
                     getItemLayout={(data, index) => (
@@ -185,4 +187,4 @@ function NearbyScreen() {
     </ThemeContext.Consumer>
     );
 }
-export default  NearbyScreen
+export default  DiscoverScreen
