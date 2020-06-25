@@ -28,6 +28,15 @@ function MyPublishScreen() {
   const [searching, setSearching] = React.useState(false);
   const [search_text, setSearchText] = React.useState("");
 
+  const [refreshing, setRefreshing] = React.useState(false)
+  const refreshMyPublish =  React.useCallback(() => {
+    setRefreshing(true);
+    new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    })
+    .then(() => setRefreshing(false));
+  }, [])
+
   const searchingBar = () => { return (
     <ThemeContext.Consumer>
       {theme=>
@@ -98,6 +107,10 @@ function MyPublishScreen() {
         showsVerticalScrollIndicator={ true }
         renderItem={({ item, index }) => <MyPublishItem item={item} key={index}/> }
         keyExtractor={ item => item.id }
+        stickySectionHeadersEnabled
+        onRefresh={ refreshMyPublish }
+        refreshing={refreshing}
+        //contentOffset={{x:0,y:60}}
       >
       </SectionList>
     );

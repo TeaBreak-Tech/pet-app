@@ -30,3 +30,5 @@
 └── Pet
 
 # 发布
+android
+./gradlew assembleRelease

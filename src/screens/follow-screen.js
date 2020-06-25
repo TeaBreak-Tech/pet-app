@@ -55,7 +55,7 @@ function NearbyScreen() {
             <View>
                 <Animated.View style={{ zIndex:2, backgroundColor:theme.background, height:barAnim }}>
                     <Animated.View style={{ height:90, transform:[{ translateY:menuTranslateAnim }] }}>
-                        <ScrollView horizontal={true} contentContainerStyle={{ alignItems:"center", height:90, marginLeft:10 }}>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ alignItems:"center", height:90, marginLeft:10 }}>
                             {follow_list.map((item,index)=>(
                             <TouchableOpacity
                                 key={index}

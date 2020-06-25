@@ -41,6 +41,16 @@ function MyFavoriteScreen() {
   const [type, setType] = React.useState(null);
   const typeAnim = useRef(new Animated.Value(1)).current;
 
+  const [refreshing, setRefreshing] = React.useState(false)
+
+  const refreshMyFavorite = React.useCallback(() => {
+    setRefreshing(true);
+    new Promise(resolve => {
+      setTimeout(resolve, 2000);
+    })
+    .then(() => setRefreshing(false));
+  }, [])
+
   const tabFocus = () => {
     // Will change fadeAnim value to 0 in 5 seconds
     Animated.spring(typeAnim, {
@@ -199,6 +209,9 @@ function MyFavoriteScreen() {
           showsVerticalScrollIndicator={ true }
           renderItem={({ item, index }) => <MyFavoriteItem item={item} key={index}/> }
           keyExtractor={ item => item.id }
+          stickySectionHeadersEnabled
+          onRefresh={ refreshMyFavorite }
+          refreshing={refreshing}
         >
         </SectionList>
       }

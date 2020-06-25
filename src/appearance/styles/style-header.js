@@ -93,7 +93,8 @@ var style_header= StyleSheet.create({
 		    height: 2
 	    },
 	    shadowRadius: 2,
-	    shadowOpacity: 1
+        shadowOpacity: 1,
+        elevation:3
     },
     // 搜索取消按钮的字体
     cancel_button_text:{

@@ -114,13 +114,27 @@ class MineScreen extends Component {
     }
 
     bounceUp = (then)=>{
-        Animated.spring(this.pan,{
-            toValue: {x:0,y:-this.state.distance},
-            tension:1,
-            useNativeDriver: false,
-        }).start(then)
-        this.setState({scrollable:true})
+        this.setState(
+            {scrollable:true},
+            Animated.spring(this.pan,{
+                toValue: {x:0,y:-this.state.distance},
+                tension:1,
+                useNativeDriver: false,
+            }).start(then)
+        )
     }
+
+    bounceDown = (then)=>{
+        this.setState(
+            {scrollable:false},
+            Animated.spring(this.pan,{
+                toValue: {x:0,y:0},
+                tension:1,
+                useNativeDriver: false,
+            }).start(then)
+        )
+    }
+
     panResponder1 = PanResponder.create({
         onMoveShouldSetPanResponder: () => !(this.pan.y._value<=-this.state.distance),
         onPanResponderGrant: this.getRecord,
@@ -174,7 +188,25 @@ class MineScreen extends Component {
                         justifyContent:"flex-end"
                         }}
                     >
-                        <View style={{height:30}} {...this.panResponder2.panHandlers} collapsable={false}/>
+                        <View
+                            style={{height:30, justifyContent:"center", alignItems:"center"}}
+                            {...this.panResponder2.panHandlers}
+                            collapsable={false}
+                        >
+                            <TouchableOpacity 
+                                style={{height:20,justifyContent:"center"}}
+                                onPress={()=>{
+                                    if ( this.state.scrollable ){
+                                        this.bounceDown()
+                                    }else{
+                                        this.bounceUp()
+                                    }
+                                }}
+                                activeOpacity={1}
+                            >
+                                <View style={{height:4,width:30,borderRadius:2,backgroundColor:this.state.scrollable?theme.separator:"transparent"}}/>
+                            </TouchableOpacity>
+                        </View>
                         <View style={{
                             height:60,
                             flexDirection:"row",
