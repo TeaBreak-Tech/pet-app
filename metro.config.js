@@ -6,6 +6,8 @@
  */
 
 // 为引入svg而进行了修改
+
+// https://stackoverflow.com/questions/59606392/how-to-load-local-svg-file-with-react-native-svg-library
  
 const { getDefaultConfig } = require("metro-config");
 

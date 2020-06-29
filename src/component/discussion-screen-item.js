@@ -19,8 +19,7 @@ function DiscussionScreenItem(props) {
     item = props.item
     
     return (
-        <ThemeContext.Consumer>
-            {theme=>
+        <ThemeContext.Consumer>{theme=>
             <View style={{backgroundColor:theme.background}}>
                 <View style={{flex:1,marginHorizontal:18,justifyContent:"space-between"}}>
                     <TouchableOpacity style={{}}>
@@ -52,8 +51,7 @@ function DiscussionScreenItem(props) {
                 </View>
                 <View style={{height:7,backgroundColor:theme.background_emphasis}}></View>
             </View>
-            }
-        </ThemeContext.Consumer>
+        }</ThemeContext.Consumer>
     );
 }
 
