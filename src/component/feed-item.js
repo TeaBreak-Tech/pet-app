@@ -31,7 +31,7 @@ function NearbyItem(props) {
                                     fontSize: 14,
                                     color: theme.text_emphasis,
                                 }}>{item.title}</Text>
-                                <ProfileLine signature={true}/>
+                                <ProfileLine avator_radius={18} signature={true}/>
                                 <Text numberOfLines={2} style={{fontSize: 12,lineHeight: 14, color:theme.text, maxWidth:200}}>{item.discription}</Text>
                             </View>
                             <View>

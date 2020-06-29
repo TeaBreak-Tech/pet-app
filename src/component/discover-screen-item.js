@@ -1,85 +1,71 @@
+/* 社区-发现页单条动态卡片 */
+
 // Import
 import React from 'react';
-import { View, Text, TouchableOpacity, ImageBackground, Image } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
 
 // Context
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
-// Children
+// Components
 import ProfileLine from './profile-line'
 import Icon from './icon'
-import InteractionBar from './intercation-bar'
+import AppImage from './app-image'
+import { ViewFill } from '../component/icon'
+
 // Style
 import _style from '../appearance/styles/style-follow-screen'
 import style from '../appearance/styles/style-discover-screen'
-// Tools
-import {screenWidth} from '../tools/scale'
 
-// 社区和寻找公用的搜索引擎页
-function DiscoverScreenItem(props) {
-    const item = props.item
-    const navigation = props.navigation
+
+function DiscoverScreenItem({ item, navigation }) {
+    
     return (
-        <ThemeContext.Consumer>
-            {theme=>
-                <TouchableOpacity 
-                    style={[ { backgroundColor:theme.background }, style.card_container ]}
-                    activeOpacity={0.9}
-                    onPress={()=>{
-                        navigation.navigate("Moment-Detail",{item:item})
-                    }}
-                >
-                    <Image source={{ uri: item.images[0].uri }} style={ style.image }/>
-                    <ProfileLine
-                        style={{position:"absolute",top:'5%',left:'5%'}}
-                        signature={false}
-                        radius={30}
-                        username_style={_style.username_text}
-                        profile_picture_style={_style.profile_picture_shadow}
-                        user={item.author}
-                    />
+        <ThemeContext.Consumer>{theme=>
+            <TouchableOpacity 
+                style={[ style.card_container, { backgroundColor:theme.background } ]}
+                activeOpacity={0.9}
+                onPress={()=>{
+                    navigation.navigate("Moment-Detail",{item:item})
+                }}
+            >
+                <AppImage uri={item.images[0].uri} style={style.image}/>
+                <ProfileLine
+                    user={item.author}
+                    signature={false}
+                    style={style.profileline_in_imgbg}
+                    shadow='default'
+                    avator_radius={30}
+                    profile_picture_style={style.profileline_avator_wrapper}
+                    username_style={style.prifileline_username_text}
+                />
+                <Text numberOfLines={2} style={[ style.item_text, { color:theme.text_emphasis } ]}>
+                    {item.text}
+                </Text>
 
-                    <View style={_style.first_line_container}>
-                        <Text numberOfLines={2} style={[
-                            {
-                                fontSize: 14,
-                                lineHeight: 14,
-                                marginLeft:10,
-                                marginRight:10
-                            }, {
-                                color:theme.text_emphasis 
-                            }
-                        ]}>
-                            {item.text}
-                        </Text>
-                    </View>
-
-                    <View style={style.second_line_container}>
-                        {item.tags.map((item,index)=>(
+                <View style={style.second_line_container}>
+                    {item.tags.map((item,index)=>(
                         <TouchableOpacity
                             key={index}
                             onPress={()=>{
-                                // When a Profile in Follow-List is clicked
+                                // When a Tag is clicked
                             }}
                         >
-                            <Text style={[ style.tag_text, { color:theme.text }]}>
+                            <Text style={[ style.tag_text, { color:theme.text } ]}>
                                 #{item.title}
                             </Text>
                         </TouchableOpacity>
-                        ))}
-                    </View>
+                    ))}
+                </View>
 
-                        <View style={ style.third_line_container }>
-                            <View style={_style.view_count_container}>
-                                <Icon radius={16}/>
-                                <Text style={[ _style.view_count_text, { color:theme.text }]}>
-                                    浏览量 {item.interactions.view}
-                                </Text>
-                            </View>
-                        </View>
-                </TouchableOpacity>
-            }
-        </ThemeContext.Consumer>
+                <View style={style.view_count_container}>
+                    <ViewFill radius={16} />
+                    <Text style={[ style.view_count_text, { color:theme.text } ]}>
+                        浏览量 {item.interactions.view}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        }</ThemeContext.Consumer>
     );
 }
 

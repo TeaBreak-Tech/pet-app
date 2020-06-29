@@ -44,7 +44,7 @@ function MomentDetailScreen({route:{params:{item}}, isLogin}){
                 </ImageBackground>
                 <ProfileLine
                     user={item.author}
-                    radius={40}
+                    avator_radius={40}
                     style={{marginTop:10,marginLeft:10,marginRight:10}}
                     username_style={{fontSize:14}}
                     additional_text="2月"

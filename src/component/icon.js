@@ -12,34 +12,44 @@ import style_header from '../appearance/styles/style-header'
 
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
+import ViewFillSVG from '../appearance/assets/svg/view_fill'
+
 // class: Icon
+
+const Icon = (props) => {
+
+    let radius = props.radius?props.radius:28 // 外部传入图标半径，默认36
+    let Component = props.component?props.component:()=><View/>
+    let outer_style = props.style?props.style:{};
+
+    return (
+        <View style={[
+            // 默认是一个圆形
+            {width: radius,
+            height: radius,
+            borderRadius: radius/2,
+            borderWidth: 1,
+            borderColor: "gray",
+            backgroundColor:"white"},
+            outer_style,
+        ]}>
+            <Component/>
+        </View>
+    )
+    
+}
 
 export default connect (
     (state) => {return{path: state.nav.path}}
-)(class Icon extends Component{
-    static contextType = ThemeContext;
+)(Icon)
 
-    render(){
-
-        let theme = this.context;   // 从 ThemeContext 取出 theme 值
-        let path = this.props.path  // 获取当前导航状态
-        let name = this.props.name
-
-        radius = this.props.radius?this.props.radius:28 // 外部传入图标半径，默认36
-        let outer_style = this.props.style?this.props.style:{};
-
-        return (
-            <View style={[
-                // 默认是一个圆形
-                {width: radius,
-                height: radius,
-                borderRadius: radius/2,
-                borderWidth: 1,
-                borderColor: "gray",
-                backgroundColor:"white"},
-                outer_style,
-            ]}>
-            </View>
-        )
-    }
-})
+// 浏览量图标
+export const ViewFill = ({ radius }) => {
+    //Icon = require('../../res/icon/pawn.svg')
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <ViewFillSVG width={radius} height={radius}/>
+        </View>
+    )
+}
