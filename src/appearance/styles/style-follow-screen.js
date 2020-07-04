@@ -48,97 +48,68 @@ var style_header= StyleSheet.create({
         height: screenWidth(),
         justifyContent:"space-between",
     },
-    header_container:{
-        height:60,
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"space-between"
+    profileline_container:{
+        position:"absolute",
+        left:20,
+        top:20,
     },
     username_text:{
-        marginLeft:15,
         fontSize: 14,
         lineHeight: 24,
         color: "#ffffff",
-        shadowColor: "black",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowRadius: 2,
-        shadowOpacity: 1,
-        elevation:3,
     },
     share_button_container:{
-        marginRight:16
+        position:"absolute",
+        right:20,
+        top:20,
     },
-    profile_picture_shadow:{
+    profile_picture_wrapper:{
         width: 32,
         height: 32,
         borderRadius:16,
         backgroundColor:"white",
-        shadowColor: "rgba(0, 0, 0, 0.16)",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowRadius: 2,
-        shadowOpacity: 1,
         alignItems:"center",
         justifyContent:"center",
-        elevation:3,
     },
-    image_footer_container:{
-        height:50,
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"flex-end"
-    },
+    
     show_comment_indicator:{
+        position:'absolute',
+        bottom:20,
+        right:20,
         width: 26,
 	    height: 26,
 	    opacity: 0.4,
         backgroundColor: "#464646",
         borderRadius:13,
-        marginRight:16,
         alignItems:"center",
         justifyContent:"center",
     },
     show_comment_indicator_text:{
-        color:"white"
+        color:"white",
     },
-    first_line_container:{
-        flexDirection:"row",
-        justifyContent:"space-between",
-        alignItems:"center",
+    content_container:{
         marginTop:5,
+        marginLeft:15,
     },
     text:{
-        marginLeft:16,
         width:270,
         fontSize: 16,
 	    lineHeight: 27,
     },
-    interaction_bar_container:{
-        flexDirection:"row",
-        flex:1,
-        justifyContent:"space-evenly",
-        alignItems:"center"
-    },
-    second_line_container:{
+    labels_container:{
         flexDirection:"row",
         alignItems:"center",
-        marginLeft:16,
     },
     tag_text:{
         fontSize: 12,
         lineHeight: 12,
         marginRight:5,
     },
-    third_line_container:{
+    bottom_container:{
         flexDirection:"row",
         alignItems:"center",
         justifyContent:"space-between",
-        marginLeft:16,
+        marginLeft:15,
         height:40,
     },
     view_count_container:{

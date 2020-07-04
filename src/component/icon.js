@@ -4,15 +4,16 @@ import { connect } from 'react-redux'
 
 import {
     View,
-    Dimensions,
-    TouchableOpacity,
+    Platform,
 } from "react-native";
 
-import style_header from '../appearance/styles/style-header'
-
-import {ThemeContext} from '../appearance/theme/theme-context-provider'
+import default_styles from '../appearance/styles/style-defaults'
 
 import ViewFillSVG from '../appearance/assets/svg/view_fill'
+import Comment1OutlinedSVG from '../appearance/assets/svg/comment1_outlined'
+import LikeOutlinedSVG from '../appearance/assets/svg/like_outlined'
+import FavoriteOutlinedSVG from '../appearance/assets/svg/favorite_outlined'
+import ShareOutlinedWhiteSVG from '../appearance/assets/svg/share_outlined_white'
 
 // class: Icon
 
@@ -45,11 +46,58 @@ export default connect (
 
 // 浏览量图标
 export const ViewFill = ({ radius }) => {
-    //Icon = require('../../res/icon/pawn.svg')
     radius=radius?radius:28
     return(
         <View style={{}}>
             <ViewFillSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// 评论量图标
+export const CommentOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <Comment1OutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// 点赞图标
+export const LikeOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <LikeOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// 收藏图标
+export const FavoriteOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <FavoriteOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// 分享图标
+export const ShareOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    let shadow_bg = {
+        backgroundColor:'black',
+        opacity:0.2,
+        borderRadius:radius/2+3,
+        height:radius+6,
+        width:radius+6,
+    }
+    return(
+        <View style={{justifyContent:'center',alignItems:'center', ...default_styles.dark_shadow}}>
+            {Platform.OS==='android'?<View style={{position:'absolute',...shadow_bg}}/>:null}
+            <ShareOutlinedWhiteSVG width={radius} height={radius}/>
         </View>
     )
 }

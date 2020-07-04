@@ -83,8 +83,6 @@ class HeaderCenter extends Component{
                             // 搜索框颜色跟随主题
                             {backgroundColor:theme.background_emphasis,color:theme.basic_dark}
                         ]}
-                        // 文字居中（跟样式表重复了）
-                        //textAlign="center"
                         // 将搜索框的信息存入 state
                         onChangeText={(text) => this.setState({text})}
                         // 默认内容

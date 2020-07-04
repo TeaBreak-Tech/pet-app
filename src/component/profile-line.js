@@ -68,6 +68,7 @@ class IconButton extends Component{
         let avator_radius = this.props.avator_radius?this.props.avator_radius:18
         let signature = this.props.signature?this.props.signature:false
         let shadow_style = this.props.shadow?this.props.shadow==='default'?style_default.shadow:this.props.shadow:{}
+        let text_shadow_style = this.props.shadow?this.props.shadow==='default'?style_default.dark_shadow:this.props.shadow:{}
         let username_style = this.props.username_style?this.props.username_style:{}
         let profile_picture_style = this.props.profile_picture_style?this.props.profile_picture_style:{}
         let marginLeft = this.props.marginLeft?this.props.marginLeft:0
@@ -116,7 +117,7 @@ class IconButton extends Component{
                                         lineHeight: 17,
                                         color: "#535353"
                                     },
-                                    shadow_style,
+                                    text_shadow_style,
                                     username_style,
                                 ]}
                             >{user.username}</Text>

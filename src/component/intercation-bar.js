@@ -5,11 +5,10 @@ import { connect } from 'react-redux'
 import {
     View,
     Text,
-    Dimensions,
     TouchableOpacity,
 } from "react-native";
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
-import Icon from "./icon"
+import { CommentOutlined, LikeOutlined, FavoriteOutlined } from "./icon"
 
 class IconButton extends Component{
     static contextType = ThemeContext;
@@ -17,8 +16,6 @@ class IconButton extends Component{
     render(){
 
         let theme = this.context;
-        let title = this.props.title;
-        let icon_name = this.props.icon_name;
 
         return (
             <View style={{
@@ -26,25 +23,26 @@ class IconButton extends Component{
                 flexDirection:"row",
                 justifyContent:"space-between",
                 alignItems:"center",
+                ...this.props.style,
             }}>
-                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly"}}>
-                    <Icon radius={18}></Icon>
+                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly",alignItems:'center'}}>
+                    <CommentOutlined radius={16} />
                     <Text style={{
                         fontSize: 12,
 	                    lineHeight: 17,
                         color: theme.text,
                     }}>26</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly"}}>
-                    <Icon radius={18}></Icon>
+                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly",alignItems:'center'}}>
+                    <LikeOutlined radius={16} />
                     <Text style={{
                         fontSize: 12,
 	                    lineHeight: 17,
                         color: theme.text,
                     }}>26</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly"}}>
-                    <Icon radius={18}></Icon>
+                <TouchableOpacity style={{width:60, flexDirection:"row",justifyContent:"space-evenly",alignItems:'center'}}>
+                    <FavoriteOutlined radius={14} />
                     <Text style={{
                         fontSize: 12,
 	                    lineHeight: 17,
