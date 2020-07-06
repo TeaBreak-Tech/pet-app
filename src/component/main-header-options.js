@@ -9,20 +9,23 @@ import HeaderRight from '../component/header-right'
 // Tools
 import {safeAreaFromTop} from '../tools/scale'
 
-function MainHeaderOptions (test,navigation,theme,settings){
+function MainHeaderOptions (navigation,theme,settings){
+    //console.log("Header Options's Navigation Prop:\n",navigation)
     // 在此处加上状态栏高度（只需加这一次）
     height = settings.header_height+safeAreaFromTop()
     return({
-    headerTitle: () => (<HeaderCenter navigation={navigation}/>),
-    headerLeft: () => (<HeaderLeft onPress={()=>navigation.openDrawer()}/>),
-    headerRight: () => (<HeaderRight onPress={()=>navigation.navigate('Virtual-Pet')}/>),
-    headerTitleAlign:"center",
+        headerTransparent: settings.header_transparent? true:false,
+        headerTitle: () => (<HeaderCenter navigation={navigation}/>),
+        headerLeft: () => (<HeaderLeft onPress={()=>navigation.openDrawer()}/>),
+        headerRight: () => (<HeaderRight onPress={()=>navigation.navigate('Virtual-Pet')}/>),
+        headerTitleAlign:"center",
 
-    headerStyle: {
-        backgroundColor: theme.background,
-        height:height
-    },
-    headerTransparent: settings.header_transparent? true:false,
-})}
+        headerStyle: {
+            backgroundColor: theme.background,
+            height:height
+        },
+    
+    }
+)}
 
 export default MainHeaderOptions

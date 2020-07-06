@@ -48,10 +48,6 @@ var style_header= StyleSheet.create({
     // TabBar的容器的样式，高度32，横排，均匀分布
     tab_bar_container:{
         height:32,
-        width:screenWidth()*0.6,
-        flexDirection:"row",
-        alignItems:"center",
-        justifyContent:"space-between"
     },
     // TabBar选项的总容器
     tab_bar_item_container:{
@@ -70,9 +66,6 @@ var style_header= StyleSheet.create({
     },
     // TabBar选项的文字样式
     tab_bar_item_text:{
-        //width: 36,
-	    //height: 12,
-	    //fontFamily: "Source Han Sans CN",
 	    fontSize: 14,
 	    lineHeight: 24,
 	    color: "#535353"

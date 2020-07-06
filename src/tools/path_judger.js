@@ -130,3 +130,52 @@ function PathJudger(path){
 }
 
 export default PathJudger
+
+export const isSearching = path => {
+    return path==='Search'
+}
+
+export const getTabItems = path => {
+    switch(path){
+        case 'Discover': case 'Discussion': case 'Follow':
+            return([
+                {key:'发现',to:'Discover'},
+                {key:'关注',to:'Follow'},
+                {key:'论坛',to:'Discussion'},
+            ])
+        case 'Feed': case 'Nearby':
+            return([
+                {key:'资讯',to:'Feed'},
+                {key:'附近',to:'Nearby'},
+            ])
+        case 'Search':
+            return([
+                {key:'全部',to:'All-Search-Results'},
+                {key:'动态',to:'All-Search-Results'},
+                {key:'论坛',to:'All-Search-Results'},
+                {key:'用户',to:'All-Search-Results'},
+                {key:'资讯',to:'All-Search-Results'},
+                {key:'附近',to:'All-Search-Results'},
+            ])
+        default:
+            return([])
+    }
+}
+
+export const haveHeader = path => {
+    switch (path){
+        case 'Mine':
+        case 'My-Publish':
+        case 'My-Pet':
+        case 'My-Favorite':
+        case 'Virtual-Pet':
+        case 'My-Shopping':
+        case 'Inbox':
+        case 'Checkin':
+        case 'Settings':
+        case 'Edit-Profile':
+            return false
+        default:
+            return true
+    }
+}

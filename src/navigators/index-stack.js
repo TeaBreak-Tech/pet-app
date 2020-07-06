@@ -23,7 +23,10 @@ import judgePath from '../tools/path_judger'
 
 const Stack = createStackNavigator();
 
-function IndexStack({path}) {
+function IndexStack({path, navigation}) {
+
+    //console.log("Index Stack's Path Prop:\n",navigation.state)
+    //let [ header_shown, setHeaderShown ] = React.useState(true)
 
     return (
         <ThemeContext.Consumer>
@@ -31,7 +34,7 @@ function IndexStack({path}) {
                 <Stack.Navigator initialRouteName="Main" headerMode="screen">
 
                 {/* APP 主页面 */}
-                <Stack.Screen name="Main" component={MainTabs} options={({navigation})=>(MainHeaderOptions(12,navigation,theme,judgePath(path)))}/>
+                <Stack.Screen name="Main" component={MainTabs} options={({navigation})=>(MainHeaderOptions(navigation,theme,judgePath(path)))}/>
                 {/* 我-设置页 */}
                 <Stack.Screen name="Settings" component={SettingsScreen}
                     options={{title:"设置",headerTitleAlign:"center",headerBackTitle:"返回",headerTintColor:theme.basic,headerTitleStyle:{color:theme.text_emphasis},headerBackTitleStyle:{color:theme.text_emphasis,fontWeight:"bold"}}}/>
