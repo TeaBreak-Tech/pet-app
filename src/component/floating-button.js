@@ -58,7 +58,6 @@ export default FloatingButton
 
 var style_floating_button = StyleSheet.create({
     container:{
-        
         shadowColor: "black",
         shadowOffset: {
             width: 0,
@@ -67,6 +66,9 @@ var style_floating_button = StyleSheet.create({
         shadowRadius: 3,
         shadowOpacity: 0.5,
         elevation:5,
+        position: 'absolute',
+        bottom:'10%',
+        left: '80%',
     },
     crossing_vertical:{
         position:"absolute",

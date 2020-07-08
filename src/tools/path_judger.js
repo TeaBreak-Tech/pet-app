@@ -32,6 +32,10 @@
     header_height: [80,48,97,?,?]
 */
 
+
+import Avator from '../component/avator'
+//import Avator from '../component/avator'
+
 function PathJudger(path){
     
     switch(path){

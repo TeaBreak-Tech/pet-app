@@ -1,6 +1,6 @@
 import { StyleSheet, BackHandler } from 'react-native';
 import { TabActions } from '@react-navigation/native'; 
-import {screenWidth} from '../../tools/scale'
+import { screenWidth } from '../../tools/scale'
 
 var style_header= StyleSheet.create({
     // 中间部分容器，在社区和寻找界面的样式：搜索框+导航条=80
@@ -93,18 +93,6 @@ var style_header= StyleSheet.create({
     cancel_button_text:{
         fontSize: 14
     },
-    messageIcon_temp:{
-        left:screenWidth()*0.1,
-        width: 36,  
-        height: 36,
-        borderRadius: 18,
-    },
-    petIcon_temp:{
-        right:screenWidth()*0.1,
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-    },
     tab_item:{               // 是一个文本类型
         fontSize:15,
         color:"white"
@@ -116,7 +104,18 @@ var style_header= StyleSheet.create({
     tab_separator:{
         fontSize:20,
         color:"white",
-    }
+    },
+    header_right_container:{
+        height:80,
+        right:screenWidth()*0.07
+    },
+    header_left_container:{
+        height:80,
+        left:screenWidth()*0.07
+    },
+    header_left_right_icon:{
+        top:10
+    },
 });
 
 export default style_header
