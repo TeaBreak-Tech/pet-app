@@ -3,46 +3,35 @@ import React, { Component, createRef } from 'react';
 import {
     View,
     Text,
-    TextInput,
-    StyleSheet,
-    SectionList,
-    ScrollView,
     Dimensions,
     PanResponder,
     Animated,
     TouchableOpacity,
     ImageBackground,
-    Modal,
-    Share,
     StatusBar,
 } from "react-native";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 // Context
-import { connect, useStore } from 'react-redux'
+import { connect } from 'react-redux'
 import { changeText } from '../redux/action/action'
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
-// Chiildren
+// Chiildren and Components
 import ProfileCard from '../component/profile-card';
-import Icon from '../component/icon'
-import HeaderLeft from '../component/header-left'
-import HeaderRight from '../component/header-right'
-
-// Tools
-import {safeAreaFromTop} from '../tools/scale'
-import judgePath from '../tools/path_judger'
-
-// Style
-import style from '../appearance/styles/style-mine-screen'
-import style2 from '../appearance/styles/style-header'
-
-// Test
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-const Tab = createMaterialTopTabNavigator();
-import FeedScreen from '../screens/feed-screen'
+import { SettingsOutlined, CheckinOutlined, PetOutlined, FavoriteOutlined, AlarmOutlined, ShoppingCartOutlined, MineIconOutlined } from '../component/icon'
 import NearbyScreen from '../screens/nearby-screen'
 import MyPublishScreen from './mine-sub-screens/my-publish-screen'
 import MyFavoriteScreen from './mine-sub-screens/my-favorite-screen'
+
+// Tools
+import { safeAreaFromTop, screenWidth } from '../tools/scale'
+
+// Style
+import style from '../appearance/styles/style-mine-screen'
+
+const Tab = createMaterialTopTabNavigator();
+
 
 class MineScreen extends Component {
 
@@ -57,11 +46,11 @@ class MineScreen extends Component {
             bg_height: 380-safeAreaFromTop(),
             distance: 280-safeAreaFromTop(),
             tab_item:[
-                {key:'我的发布',to:'My-Publish',auto_bounce:true},
-                {key:'我的宠物',to:'My-Pet',auto_bounce:true},
-                {key:'我的收藏',to:'My-Favorite',auto_bounce:true},
-                {key:'我的商城',to:'My-Shopping',auto_bounce:false},
-                {key:'消息通知',to:'Inbox',auto_bounce:false},
+                {key:'我的发布',to:'My-Publish',auto_bounce:true, icon:MineIconOutlined },
+                {key:'我的宠物',to:'My-Pet',auto_bounce:true, icon:PetOutlined },
+                {key:'我的收藏',to:'My-Favorite',auto_bounce:true, icon:FavoriteOutlined },
+                {key:'我的商城',to:'My-Shopping',auto_bounce:false, icon:ShoppingCartOutlined },
+                {key:'消息通知',to:'Inbox',auto_bounce:false, icon:AlarmOutlined },
             ],
             favorite_searching:false,
             publish_searching:false,
@@ -170,8 +159,12 @@ class MineScreen extends Component {
                 animated={true}/>
             <ImageBackground source={{ uri: background }} style={{height:380}}>
             <View style={[style.header_container,{height:this.state.header+48}]}>
-                <HeaderLeft onPress={()=>this.props.navigation.navigate('Settings')} opacity={1}/>
-                <HeaderRight onPress={()=>this.props.navigation.navigate('Checkin')} opacity={1}/>
+                <TouchableOpacity style={{marginLeft:screenWidth()*0.07,marginBottom:10}} onPress={()=>this.props.navigation.navigate('Settings')}>
+                    <SettingsOutlined/>
+                </TouchableOpacity>
+                <TouchableOpacity style={{marginRight:screenWidth()*0.07,marginBottom:10}} onPress={()=>this.props.navigation.navigate('Checkin')}>
+                    <CheckinOutlined/>
+                </TouchableOpacity>
             </View>
                 <ProfileCard height={270-(this.state.header+48)} onEdit={()=>this.props.navigation.navigate('Edit-Profile')}/>
             </ImageBackground>
@@ -241,9 +234,11 @@ class MineScreen extends Component {
                                             },
                                             shadowRadius: 2,
                                             shadowOpacity: 1,
-                                            elevation:3
+                                            elevation:3,
+                                            justifyContent:'center',
+                                            alignItems:'center',
                                         }}>
-                                            {/*<Icon radius={32}/>*/}
+                                            <item.icon basic radius={20}/>
                                         </View>
                                         <Text style={[
                                             style.tab_bar_item_text,

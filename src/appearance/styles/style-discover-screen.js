@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import style_default from './style-defaults'
 
-var style_header= StyleSheet.create({
+var style_discover_screen= StyleSheet.create({
     
     /* 发现页动态卡片样式 */
     card_container:{
@@ -70,5 +70,5 @@ var style_header= StyleSheet.create({
     },
 });
 
-export default style_header
+export default style_discover_screen
 

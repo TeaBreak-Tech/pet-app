@@ -1,37 +1,34 @@
+/* 顶栏右侧图标 */
+
 // Imports
-import React, { Component } from 'react';
-import { TouchableOpacity } from "react-native";
+import React from 'react';
+import { TouchableOpacity, View } from "react-native";
 
 // Context
 import { connect } from 'react-redux'
 
 // Children
-import Icon from '../component/icon'
+import { NearbyOutlined, VPOutlined } from '../component/icon'
 
 // Tools
-import judgePath from '../tools/path_judger'
-import {screenWidth} from '../tools/scale'
+import { haveHeader } from '../tools/path_judger'
 
-export default connect (
-    (state) => {return{path: state.nav.path}}
-)(class HeaderRight extends Component{
-    render(){
+// Styles
+import style from '../appearance/styles/style-header'
 
-        let path = this.props.path  // 获取当前导航状态
-        height = judgePath(path).header_height
-        // 若未设置透明度，根据路径判断是否显示，否则，只要没有完全透明就要显示
-        shown = (this.props.opacity==null)?judgePath(path).header_button_shown:(this.props.opacity>0)
-                
-        return(
-            shown?
-            <TouchableOpacity
-                style={{height:height,right:screenWidth()*0.07,top:10}}
-                onPress={this.props.onPress}>
+
+const HeaderRight = ({ path, shown, onPress }) => {
+
+    shown = shown?true:haveHeader(path)
+    Icon = (path==='Feed'||path==='Nearby')?NearbyOutlined:VPOutlined
             
+    return shown?(
+        <TouchableOpacity style={style.header_right_container} onPress={onPress}>
+            <View style={style.header_left_right_icon}>
                 <Icon/>
-                
-            </TouchableOpacity>
-            :null
-        )
-    }
-})
+            </View>
+        </TouchableOpacity>
+    ):null
+}
+
+export default connect (state=>({path: state.nav.path}))(HeaderRight)

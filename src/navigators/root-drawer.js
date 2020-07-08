@@ -20,10 +20,9 @@ export default connect (
     {navigation}
 )(class InfoDrawer extends Component {
 
-    static contextType = ThemeContext;
-
     // 将 React Navigation 的导航状态变化解析到 Redux 状态管理中
     setRoute(state){
+        //console.log(state)
         let route = state.routes[state.index]
         if (route.state){this.setRoute(route.state)} //迭代
         else {
@@ -33,7 +32,6 @@ export default connect (
 
     render() {
 
-        let theme = this.context;
         path = this.props.path
 
         return (

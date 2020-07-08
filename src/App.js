@@ -13,7 +13,7 @@ import StoreProvider from './redux/store-provider';
 // Context 对象用来提供全局的 theme 变量
 import ThemeContextProvider from './appearance/theme/theme-context-provider'
 
-// 引入主导航文件（下一级入口）
+// 引入根导航组件（下一级入口）
 import RootDrawer from './navigators/root-drawer'
 
 // 使用输出 App类 的形式作为程序入口
@@ -27,8 +27,8 @@ export default class App extends Component {
       <ThemeContextProvider >
         <StoreProvider>
           
-            {/* 用根导航器 RootDrawer 作为下一级入口 */}
-            <RootDrawer/>
+          {/* 用根导航器 RootDrawer 作为下一级入口 */}
+          <RootDrawer/>
           
         </StoreProvider>
       </ThemeContextProvider>

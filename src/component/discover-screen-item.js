@@ -2,7 +2,7 @@
 
 // Import
 import React from 'react';
-import { View, Text, TouchableOpacity, Platform } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 
 // Context
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
@@ -23,7 +23,7 @@ function DiscoverScreenItem({ item, navigation }) {
     return (
         <ThemeContext.Consumer>{theme=>
             <TouchableOpacity 
-                style={[ style.card_container, { backgroundColor:theme.background } ]}
+                style={{ ...style.card_container, backgroundColor:theme.background }}
                 activeOpacity={0.9}
                 onPress={()=>{
                     navigation.navigate("Moment-Detail",{item:item})
@@ -39,7 +39,7 @@ function DiscoverScreenItem({ item, navigation }) {
                     profile_picture_style={style.profileline_avator_wrapper}
                     username_style={style.prifileline_username_text}
                 />
-                <Text numberOfLines={2} style={[ style.item_text, { color:theme.text_emphasis } ]}>
+                <Text numberOfLines={2} style={{ ...style.item_text, color:theme.text_emphasis }}>
                     {item.text}
                 </Text>
 
@@ -51,7 +51,7 @@ function DiscoverScreenItem({ item, navigation }) {
                                 // When a Tag is clicked
                             }}
                         >
-                            <Text style={[ style.tag_text, { color:theme.text } ]}>
+                            <Text style={{ ...style.tag_text, color:theme.text }}>
                                 #{item.title}
                             </Text>
                         </TouchableOpacity>
@@ -60,7 +60,7 @@ function DiscoverScreenItem({ item, navigation }) {
 
                 <View style={style.view_count_container}>
                     <ViewFill radius={16} />
-                    <Text style={[ style.view_count_text, { color:theme.text } ]}>
+                    <Text style={{ ...style.view_count_text, color:theme.text }}>
                         浏览量 {item.interactions.view}
                     </Text>
                 </View>
