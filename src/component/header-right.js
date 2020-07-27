@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { NearbyOutlined, VPOutlined } from '../component/icon'
 
 // Tools
-import { haveHeader } from '../tools/path_judger'
+import { haveHeader, isSearching } from '../tools/path_judger'
 
 // Styles
 import style from '../appearance/styles/style-header'
@@ -19,7 +19,7 @@ import style from '../appearance/styles/style-header'
 
 const HeaderRight = ({ path, shown, onPress }) => {
 
-    shown = shown?true:haveHeader(path)
+    shown = shown?true:(haveHeader(path)&&(!isSearching(path)))
     Icon = (path==='Feed'||path==='Nearby')?NearbyOutlined:VPOutlined
             
     return shown?(

@@ -7,6 +7,13 @@ var style_profile_card= StyleSheet.create({
         borderTopWidth:4,
         
     },
+    item_center:{
+        backgroundColor:"white",
+        height:50,
+        borderTopWidth:4, 
+        justifyContent:'center',
+        alignItems:'center',
+    },
     item_width_container:{
         marginLeft:30,
         marginRight:22,

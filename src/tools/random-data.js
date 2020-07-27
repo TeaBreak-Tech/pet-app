@@ -31,7 +31,7 @@ export const randomUser = () => {
     return{
         user_id:user_id,
         username:usernames[random],
-        profile_picture_address:profile_picture_addresses[random],
+        profile_picture:profile_picture_addresses[random],
         signature:"个性签名示例"
     };
 }

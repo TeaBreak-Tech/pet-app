@@ -19,7 +19,7 @@ import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
 // Chiildren and Components
 import ProfileCard from '../component/profile-card';
-import { SettingsOutlined, CheckinOutlined, PetOutlined, FavoriteOutlined, AlarmOutlined, ShoppingCartOutlined, MineIconOutlined } from '../component/icon'
+import { SettingsOutlined, CheckinOutlined, PetOutlined, FavoriteOutlined, AlarmOutlined, ShoppingCartOutlined, MineIconOutlinedBasic } from '../component/icon'
 import NearbyScreen from '../screens/nearby-screen'
 import MyPublishScreen from './mine-sub-screens/my-publish-screen'
 import MyFavoriteScreen from './mine-sub-screens/my-favorite-screen'
@@ -43,10 +43,10 @@ class MineScreen extends Component {
             scrollable:false,
             header: safeAreaFromTop(),
             s_height: Dimensions.get('window').height-safeAreaFromTop(),
-            bg_height: 380-safeAreaFromTop(),
-            distance: 280-safeAreaFromTop(),
+            bg_height: 360-safeAreaFromTop(),
+            distance: 260-safeAreaFromTop(),
             tab_item:[
-                {key:'我的发布',to:'My-Publish',auto_bounce:true, icon:MineIconOutlined },
+                {key:'我的发布',to:'My-Publish',auto_bounce:true, icon:MineIconOutlinedBasic },
                 {key:'我的宠物',to:'My-Pet',auto_bounce:true, icon:PetOutlined },
                 {key:'我的收藏',to:'My-Favorite',auto_bounce:true, icon:FavoriteOutlined },
                 {key:'我的商城',to:'My-Shopping',auto_bounce:false, icon:ShoppingCartOutlined },
@@ -141,14 +141,14 @@ class MineScreen extends Component {
         // Theme
         let theme = this.context;
         // Animation
-        const { text,isLogin,path } = this.props;
+        const { text,isLogin,user,path } = this.props;
         const translate = this.pan.y.interpolate({
             inputRange:[-10000,-this.state.distance,0,500],
             outputRange:[-this.state.distance,-this.state.distance,0,80],
             extrapolate: "clamp"
         })
 
-        background="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1590154415905&di=f401c2e337d6f0797feba14afeff6a95&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201403%2F21%2F20140321142644_dUTFx.thumb.700_0.jpeg"
+        background="http://106.52.96.163/img/app/background_5.jpg"
 
         return (
         <View>
@@ -157,7 +157,7 @@ class MineScreen extends Component {
                 translucent={true}
                 hidden={false}
                 animated={true}/>
-            <ImageBackground source={{ uri: background }} style={{height:380}}>
+            <ImageBackground source={{ uri: background }} style={{height:360}}>
             <View style={[style.header_container,{height:this.state.header+48}]}>
                 <TouchableOpacity style={{marginLeft:screenWidth()*0.07,marginBottom:10}} onPress={()=>this.props.navigation.navigate('Settings')}>
                     <SettingsOutlined/>
@@ -166,7 +166,14 @@ class MineScreen extends Component {
                     <CheckinOutlined/>
                 </TouchableOpacity>
             </View>
-                <ProfileCard height={270-(this.state.header+48)} onEdit={()=>this.props.navigation.navigate('Edit-Profile')}/>
+                <ProfileCard
+                    height={260-(this.state.header+48)}
+                    onEdit={()=>this.props.navigation.navigate('Edit-Profile')}
+                    onLogin={()=>this.props.navigation.navigate('Login')}
+                    isLogin={isLogin}
+                    user={user}
+                    askLogin
+                />
             </ImageBackground>
 
             <View style={{
@@ -276,6 +283,7 @@ export default connect (
         return {
             text: state.text.text,
             isLogin: state.login.isLogin,
+            user: state.login.user,
             path: state.nav.path,
         }
     },

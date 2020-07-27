@@ -2,17 +2,22 @@
 
 // Imports
 import React from 'react';
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Image } from "react-native";
 
 
-const Avator = ({ user, action }) => {
+const Avator = ({ user, action, radius }) => {
+
+    radius = radius? radius : 15
+    empty = user? false:true
             
     return(
-        <TouchableOpacity onPress={()=>{}}>
-        
-            <View style={{height:28,width:28,borderRadius:14,borderWidth:1}}></View>
-            
-        </TouchableOpacity>
+        <View>
+            {empty?(
+                <View style={{backgroundColor:'white',height:radius*2,width:radius*2,borderRadius:radius,borderWidth:1}}></View>
+            ):(
+                <Image source={{ uri: user.profile_picture_uri }} style={{backgroundColor:'white',height:radius*2,width:radius*2,borderRadius:radius}}></Image>
+            )}
+        </View>
     )
 }
 

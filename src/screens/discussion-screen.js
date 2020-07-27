@@ -160,7 +160,7 @@ function NearbyScreen() {
                         alignItems:"center",
                         justifyContent:"space-evenly",
                     }]}>
-                        <ScrollView horizontal={true} contentContainerStyle={{ alignItems:"center", height:50, marginLeft:10 }}>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{ alignItems:"center", height:50, marginLeft:10 }}>
                         {menu_item.map((item,index)=>(
                         <TouchableOpacity
                             key={index}

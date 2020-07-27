@@ -3,15 +3,14 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet,
     ScrollView,
-    FlatList,
     TouchableOpacity,
     Switch,
 } from "react-native";
 
 // Context
 import { connect } from 'react-redux'
+import { saveLogoutState } from  '../redux/action/login_actions'
 import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
 // Style
@@ -23,14 +22,24 @@ const mapStateToProps = (state) => {
         text: state.text.text,
         isLogin: state.login.isLogin,
         path: state.nav.path,
+        user:state.login.user
     }
 }
 
 // 输出主页面
 // 将获取state的方法和dispatch的方法与输出类关联
-function SettingsScreen({navigation}){
+function SettingsScreen({navigation, saveLogoutState}){
     const [alarm, setAlarm] = React.useState(false);
     const [theme_name, setThemeName] = React.useState(true);
+
+    const onLogoutPressed = () => {
+        saveLogoutState()
+        navigation.navigate("Mine")
+    }
+
+    const onSwitchAccountPressed = () => {
+        alert("Switch Account")
+    }
 
     return (
         <ThemeContext.Consumer>
@@ -46,17 +55,8 @@ function SettingsScreen({navigation}){
                         </TouchableOpacity>
                     </View>
                 </View>
-                <View style={[style.item_height_container,{backgroundColor:theme.background,borderTopColor:theme.background_emphasis}]}>
-                    <View style={style.item_width_container}>
-                        <Text style={style.title_text}>
-                            登出/切换账号
-                        </Text>
-                        <TouchableOpacity style={style.edit_indicator}>
-                            <Text style={style.edit_indicator_icon}>...</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
                 <View style={style.space}></View>
+                
                 <View style={[style.item_height_container,{backgroundColor:theme.background,borderTopColor:theme.background_emphasis}]}>
                     <View style={style.item_width_container}>
                         <Text style={style.title_text}>
@@ -125,6 +125,17 @@ function SettingsScreen({navigation}){
                         </TouchableOpacity>
                     </View>
                 </View>
+                <View style={style.space}></View>
+                <TouchableOpacity onPress={onSwitchAccountPressed} style={[style.item_center,{backgroundColor:theme.background,borderTopColor:theme.background_emphasis}]}>
+                    <Text style={style.title_text}>
+                        切换账号
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={onLogoutPressed} style={[style.item_center,{backgroundColor:theme.background,borderTopColor:theme.background_emphasis}]}>
+                    <Text style={style.title_text}>
+                        登出
+                    </Text>
+                </TouchableOpacity>
             </ScrollView>
             }
         </ThemeContext.Consumer>
@@ -132,7 +143,7 @@ function SettingsScreen({navigation}){
     );
 }
 
-export default connect (mapStateToProps)(SettingsScreen)
+export default connect (mapStateToProps,{saveLogoutState})(SettingsScreen)
 
 
 

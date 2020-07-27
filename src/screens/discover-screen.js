@@ -15,7 +15,7 @@ import {
 
 // Children
 import NearbyItem from '../component/nearby-item'
-import Icon from '../component/icon'
+import Icon, { DownOutlined } from '../component/icon'
 import Banner from '../component/banner'
 import DiscoverScreenItem from '../component/discover-screen-item'
 // Context
@@ -91,7 +91,7 @@ function DiscoverScreen({navigation}) {
                     }}
                 >
                     <Text style={{fontSize: 14,color:theme.text_emphasis}}>{sorting.title}</Text>
-                    <Icon radius={10} style={{position:'absolute',right:'10%'}}></Icon>
+                    <DownOutlined radius={13} style={{position:'absolute',right:'10%'}} />
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -108,7 +108,7 @@ function DiscoverScreen({navigation}) {
                     }}
                 >
                     <Text style={{fontSize: 14,color:theme.text_emphasis}}>{location.title}</Text>
-                    <Icon radius={10} style={{position:'absolute',right:'10%'}}></Icon>
+                    <DownOutlined radius={13} style={{position:'absolute',right:'10%'}} />
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -125,7 +125,7 @@ function DiscoverScreen({navigation}) {
                     }}
                 >
                     <Text style={{fontSize: 14,color:theme.text_emphasis}}>{location.title}</Text>
-                    <Icon radius={10} style={{position:'absolute',right:'10%'}}></Icon>
+                    <DownOutlined radius={13} style={{position:'absolute',right:'10%'}} />
                 </TouchableOpacity>
             </View>
             <Animated.View style={{height:optionsAnim}}>
@@ -172,7 +172,7 @@ function DiscoverScreen({navigation}) {
                     }
                     data={randomPublish(100)}
                     showsVerticalScrollIndicator={true}
-                    renderItem={({ item }) => <DiscoverScreenItem item={item} key={item.id} navigation={navigation}/>}
+                    renderItem={({ item }) => <DiscoverScreenItem item={item} navigation={navigation}/>}
                     keyExtractor={item => item.id}
                     style={{top:0}}
                     getItemLayout={(data, index) => (

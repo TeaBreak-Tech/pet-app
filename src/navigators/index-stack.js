@@ -13,6 +13,7 @@ import InboxScreen from '../screens/inbox-screen'
 import EditProfileScreen from '../screens/mine-sub-screens/edit-profile-screen'
 import PublishEditScreen from '../screens/publish-edit-screen'
 import MomentDetailScreen from '../screens/moment-detail-screen'
+import LoginScreen from '../screens/login-screen'
 
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
@@ -52,6 +53,7 @@ const IndexStack = ({ path }) => (
                     <Stack.Screen name="Edit-Profile" component={EditProfileScreen} options={{title:"账号信息", ...common_options}} />
                     <Stack.Screen name="Publish-Edit" component={PublishEditScreen} options={{title:"发布动态", ...common_options, headerBackTitle:"取消" }} />
                     <Stack.Screen name="Moment-Detail" component={MomentDetailScreen} options={{title:"动态详情", ...common_options}} />
+                    <Stack.Screen name="Login" component={LoginScreen} options={{...common_options}} />
                 </Stack.Navigator>
             )
         }

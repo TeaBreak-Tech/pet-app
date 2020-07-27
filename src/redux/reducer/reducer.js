@@ -2,6 +2,7 @@
 
 import { CHANGE_TEXT, changeText } from '../action/action';
 import { NAVIGATION, navigation } from '../action/navigation_actions';
+import { LOGIN, LOGOUT, saveLoginState, saveLogoutState } from '../action/login_actions';
 
 import { combineReducers } from 'redux'
 
@@ -20,13 +21,17 @@ const textReducer = (state={text : 'Initial State !!!!!'}, action) => {
 
 // 登陆状态 Reducer
 initialLoginState = {
-    isLogin:false
+    isLogin:false,
+    user:null
 }
 const loginReducer = (state=this.initialLoginState, action) => {
     switch (action.type) {
-        case CHANGE_TEXT:
-            return { ...state, a: 'Modified a' };
-    
+        case LOGIN:
+            alert("成功登陆")
+            return { ...state, user: action.user, isLogin: true };
+        case LOGOUT:
+            alert("成功退出登陆")
+            return { ...state, user: null, isLogin: false };
         default:
             return state
     }
@@ -56,4 +61,6 @@ export default mainReducer;
 export {
     changeText,
     navigation,
+    saveLoginState,
+    saveLogoutState,
 }

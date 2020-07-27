@@ -26,7 +26,7 @@ function MyPublishItem(props) {
                     </View>
                     <View style={style.bottom_container}>
                         <View style={style.detail_text_container}>
-                            <Text style={[style.detail_text,{color:theme.text_emphasis}]}>All Search Rersult, title:{item.title}daqd{item.detail}</Text>
+                            <Text style={[style.detail_text,{color:theme.text_emphasis}]}>我的发布示例内容，标题：{item.title}，内容：{item.detail}</Text>
                         </View>
                     </View>
                 </View>

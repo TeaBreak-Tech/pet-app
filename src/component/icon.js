@@ -20,7 +20,14 @@ import PetOutlinedSVG from '../appearance/assets/svg/pet_outlined'
 import AlarmOutlinedSVG from '../appearance/assets/svg/alarm_outlined'
 import ShoppingCartBaiscSVG from '../appearance/assets/svg/shopping_cart_basic'
 import CommunityIconOutlinedBaiscSVG from '../appearance/assets/svg/icon_community_outlined_basic'
+import CommunityIconOutlinedSVG from '../appearance/assets/svg/icon_community_outlined'
+import CommunityIconFilledBaiscSVG from '../appearance/assets/svg/icon_community_filled'
+import FindIconOutlinedSVG from '../appearance/assets/svg/icon_find_outlined.svg'
+import FindIconFilledSVG from '../appearance/assets/svg/icon_find_filled.svg'
 import MineIconOutlinedBaiscSVG from '../appearance/assets/svg/icon_mine_outlined_basic'
+import MineIconOutlinedSVG from '../appearance/assets/svg/icon_mine_outlined'
+import MineIconFilledSVG from '../appearance/assets/svg/icon_mine_filled'
+import DownOutlinedSVG from '../appearance/assets/svg/down_outlined'
 
 // class: Icon
 
@@ -177,7 +184,7 @@ export const ShoppingCartOutlined = ({ radius }) => {
     )
 }
 
-export const CommunityIconOutlined = ({ radius }) => {
+export const CommunityIconOutlinedBasic = ({ radius }) => {
     radius=radius?radius:28
     return(
         <View style={{}}>
@@ -186,11 +193,74 @@ export const CommunityIconOutlined = ({ radius }) => {
     )
 }
 
-export const MineIconOutlined = ({ radius }) => {
+export const CommunityIconOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <CommunityIconOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const CommunityIconFilled = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <CommunityIconFilledBaiscSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const FindIconOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <FindIconOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const FindIconFilled = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <FindIconFilledSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const MineIconOutlinedBasic = ({ radius }) => {
     radius=radius?radius:28
     return(
         <View style={{}}>
             <MineIconOutlinedBaiscSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const MineIconOutlined = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <MineIconOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const MineIconFilled = ({ radius }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{}}>
+            <MineIconFilledSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const DownOutlined = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <DownOutlinedSVG width={radius} height={radius}/>
         </View>
     )
 }

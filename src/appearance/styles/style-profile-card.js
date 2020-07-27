@@ -3,21 +3,26 @@ import { StyleSheet } from 'react-native';
 var style_profile_card= StyleSheet.create({
     root_container:{
         backgroundColor:"transparent",
-        alignItems:"center",
+        alignItems:"stretch",
         justifyContent:"flex-end",
         flexDirection:"column",
+        marginHorizontal:20,
     },
     // 头像容器
     profile_container:{
         height:80,
+        marginHorizontal:20,
         alignItems:"center",
-        justifyContent:"flex-start",
+        justifyContent:"space-between",
+        flexDirection:"row",
+    },
+    left:{
+        alignItems:"center",
         flexDirection:"row",
     },
     // 文字部分容器
     text_container:{
         height:60,
-        width:210,
         alignItems:"flex-start",
         justifyContent:"space-around",
     },
@@ -60,12 +65,12 @@ var style_profile_card= StyleSheet.create({
     },
     // 底部三个选项的总容器
     bottom_contianer:{
+        alignSelf:"center",
         alignItems:"center",
         justifyContent:"space-between",
         flexDirection:"row",
         width:300,
         height:80,
-        marginBottom:20,
     },
     // 底部每个选项的容器
     bottom_item_container:{

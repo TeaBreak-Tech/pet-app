@@ -12,6 +12,14 @@ import FindTopTabs from './find-top-tabs'
 import SearchScreen from '../screens/search-screen'
 import MineScreen from '../screens/mine-screen'
 //import Demo from '../screens/scroll-demo'
+import {
+    CommunityIconOutlined,
+    CommunityIconFilled,
+    FindIconOutlined,
+    FindIconFilled,
+    MineIconOutlined,
+    MineIconFilled,
+} from '../component/icon'
 
 
 import Logo from "../../res/icon/pawn.svg";
@@ -32,18 +40,26 @@ export default class MainTabs extends Component {
                 // Configure the Icons in the tab bar
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
-                        let iconName;
+                        let Icon;
       
-                        if (route.name === 'Home') {
-                            iconName = focused
-                            ? 'ios-information-circle'
-                            : 'ios-information-circle-outline';
-                        } else if (route.name === 'Settings') {
-                            iconName = focused ? 'ios-list-box' : 'ios-list';
+                        if (route.name === 'Community') {
+                            Icon = focused
+                            ? <CommunityIconFilled/>
+                            : <CommunityIconOutlined/>;
+                        } else if (route.name === 'Find') {
+                            Icon = focused
+                            ? <FindIconFilled/>
+                            : <FindIconOutlined/>;
+                        } else if (route.name === 'Mine') {
+                            Icon = focused
+                            ? <MineIconFilled/>
+                            : <MineIconOutlined/>;
+                        } else {
+                            Icon = <Logo/>
                         }
       
                         // Return 
-                        return <Logo/>;
+                        return Icon;
                     },
                 })}
               tabBarOptions={{
@@ -53,10 +69,10 @@ export default class MainTabs extends Component {
               }}
               lazy={false}  // 这里是否使用lazy还有待研究
             >   
-                <Tab.Screen name="Community" component={CommunityTopTabs} />
-                <Tab.Screen name="Find" component={Find} />
+                <Tab.Screen name="Community" component={CommunityTopTabs} options={{title:"社区"}} />
+                <Tab.Screen name="Find" component={Find} options={{title:"寻找"}} />
                 
-                <Tab.Screen name="Mine" component={MineScreen} />
+                <Tab.Screen name="Mine" component={MineScreen} options={{title:"我的"}} />
             </Tab.Navigator>
         );
     }
