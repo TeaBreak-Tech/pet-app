@@ -7,6 +7,7 @@ import {ThemeContext} from '../appearance/theme/theme-context-provider'
 
 // Children
 import Icon from './icon';
+import Rate from './rate';
 
 // Style
 import style from '../appearance/styles/style-nearby-item'
@@ -48,9 +49,7 @@ function NearbyItem(props) {
                                 <Text style={{fontSize:16,lineHeight: 26,color:theme.text_emphasis}}>{item.title}</Text>
                                 <Text style={{fontSize: 14,lineHeight: 20,color:theme.text_emphasis}}>距离{item.distance}｜{item.location}</Text>
                                 <Text numberOfLines={2} style={{fontSize: 12,lineHeight: 14, marginTop:6, color:theme.text, maxWidth:200}}>{item.discription}</Text>
-                                <View style={{flexDirection:"row",height:40,alignItems:"center",width:120,justifyContent:"space-between"}}>
-                                    <Icon radius={18}/><Icon radius={18}/><Icon radius={18}/><Icon radius={18}/><Icon radius={18}/>
-                                </View>
+                                <Rate/>
                             </View>
                             <View>
                                 <Image source={{ uri: item.images[0].uri }} style={{height:110,width:150}}/>

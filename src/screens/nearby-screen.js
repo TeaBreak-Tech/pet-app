@@ -18,7 +18,7 @@ import Icon from '../component/icon'
 import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Style
 import style from '../appearance/styles/style-nearby-screen'
-import icon from '../component/icon';
+import { Antiepidemic, Vaccine, Certificates, PetAdopt, PetChip, FreeService, DownOutlined } from '../component/icon';
 
 
 
@@ -51,12 +51,12 @@ function NearbyScreen() {
     const menuAnim = useRef(new Animated.Value(90)).current;
     const menuTranslateAnim = Animated.subtract(menuAnim,90)
     const menu_item = [
-        {title:"卫生防疫",key:"antiepidemic"},
-        {title:"疫苗信息",key:"vaccine"},
-        {title:"证件办理",key:"certificates"},
-        {title:"领养中心",key:"pet-adopt"},
-        {title:"宠物芯片",key:"pet-chip"},
-        {title:"免费服务",key:"free-survice"},
+        {title:"卫生防疫",key:"antiepidemic",icon:Antiepidemic},
+        {title:"疫苗信息",key:"vaccine",icon:Vaccine},
+        {title:"证件办理",key:"certificates",icon:Certificates},
+        {title:"领养中心",key:"pet-adopt",icon:PetAdopt},
+        {title:"宠物芯片",key:"pet-chip",icon:PetChip},
+        {title:"免费服务",key:"free-survice",icon:FreeService},
     ]
     const [show_options, setShowOptions] = React.useState(false);
     const optionsAnim = useRef(new Animated.Value(1)).current;
@@ -143,7 +143,7 @@ function NearbyScreen() {
                         shadowOpacity: 1,
                         elevation:3,
                       }}>
-                      {/*<Icon radius={32}/>*/}
+                        <item.icon radius={50}/>
                       </View>
                         <Text style={[
                           style.menu_item_text,
@@ -175,7 +175,7 @@ function NearbyScreen() {
               >
                 <Text style={{fontSize: 14,color:theme.text_emphasis}}>{sorting.title}</Text>
                 <View style={{marginHorizontal:10}}>
-                  <Icon radius={15}></Icon>
+                  <DownOutlined radius={15} />
                 </View>
               </TouchableOpacity>
 
@@ -194,7 +194,7 @@ function NearbyScreen() {
               >
                 <Text style={{fontSize: 14,color:theme.text_emphasis}}>{location.title}</Text>
                 <View style={{marginHorizontal:10}}>
-                  <Icon radius={15}></Icon>
+                  <DownOutlined radius={15} />
                 </View>
               </TouchableOpacity>
               </View>
@@ -264,7 +264,7 @@ function NearbyScreen() {
             //zoomScale={2}
             onScroll={(event)=>{
               //console.log(event.nativeEvent.contentOffset.y)
-              if(event.nativeEvent.contentOffset.y<-10&&(!show_menu)){
+              if(event.nativeEvent.contentOffset.y<=0&&(!show_menu)){
                 menuShow()
               }else if (event.nativeEvent.contentOffset.y>10&&(show_menu)){
                 setShowMenu(false)

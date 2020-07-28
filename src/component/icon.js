@@ -28,6 +28,25 @@ import MineIconOutlinedBaiscSVG from '../appearance/assets/svg/icon_mine_outline
 import MineIconOutlinedSVG from '../appearance/assets/svg/icon_mine_outlined'
 import MineIconFilledSVG from '../appearance/assets/svg/icon_mine_filled'
 import DownOutlinedSVG from '../appearance/assets/svg/down_outlined'
+import HotFilledSVG from '../appearance/assets/svg/hot_fill'
+import BackOutlinedSVG from '../appearance/assets/svg/back_outlined'
+import FilterOutlinedSVG from '../appearance/assets/svg/filter_outlined'
+//antiepidemic
+import AntiepidemicSVG from '../appearance/assets/svg/antiepidemic'
+//vaccine
+import VaccineSVG from '../appearance/assets/svg/vaccine'
+//certificates
+import CertificatesSVG from '../appearance/assets/svg/certificates'
+//pet-adopt
+import PetAdoptSVG from '../appearance/assets/svg/pet_adopt'
+//pet-chip
+import PetChipSVG from '../appearance/assets/svg/pet_chip'
+//free-survice
+import FreeServiceSVG from '../appearance/assets/svg/free_service'
+
+// Rate
+import RateActiveSVG from '../appearance/assets/svg/rate_active'
+import RateInactiveSVG from '../appearance/assets/svg/rate_inactive'
 
 // class: Icon
 
@@ -261,6 +280,110 @@ export const DownOutlined = ({ radius, style }) => {
     return(
         <View style={{...style}}>
             <DownOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const HotFilled = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <HotFilledSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const FilterOutlined = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <FilterOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const BackOutlined = ({ radius, style }) => {
+    radius=radius?radius:20
+    return(
+        <View style={{...style}}>
+            <BackOutlinedSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// 寻找页菜单栏的图标
+
+export const Antiepidemic = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <AntiepidemicSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const Vaccine = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <VaccineSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const Certificates = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <CertificatesSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const PetAdopt = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <PetAdoptSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const PetChip = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <PetChipSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+export const FreeService = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <FreeServiceSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+// Rate
+
+export const RateActive = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <RateActiveSVG width={radius} height={radius}/>
+        </View>
+    )
+}
+
+
+export const RateInactive = ({ radius, style }) => {
+    radius=radius?radius:28
+    return(
+        <View style={{...style}}>
+            <RateInactiveSVG width={radius} height={radius}/>
         </View>
     )
 }

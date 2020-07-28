@@ -13,12 +13,12 @@ import {
 
 // Children
 import FeedItem from '../component/feed-item'
-import Icon from '../component/icon'
+import { HotFilled, BackOutlined, FilterOutlined } from '../component/icon'
 // Context
 import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Style
 import style from '../appearance/styles/style-nearby-screen'
-import icon from '../component/icon';
+import { Antiepidemic, Vaccine, Certificates, PetAdopt, PetChip, FreeService } from '../component/icon';
 
 getRandomDataFeed = () => {
     return new Array(100).fill('').map((item, index) => {
@@ -45,14 +45,18 @@ getRandomDataFeed = () => {
 
 function NearbyScreen() {
 
-    const [menu_shown, setMenuShown] = React.useState(true);
-
     const [type_selected, setType] = React.useState(null);
-    const barAnim = useRef(new Animated.Value(90)).current;
+    const barAnim = useRef(new Animated.Value(0)).current;
+    const menuBarAnim = useRef(new Animated.Value(90)).current;
     const menuTranslateAnim = useRef(new Animated.Value(0)).current;
     const submenuTranslateAnim = useRef(new Animated.Value(-40)).current;
 
     const menuHide = Animated.parallel([
+        Animated.timing(menuBarAnim, {
+            toValue: 0,
+            duration:300,
+            useNativeDriver:false,
+        }),
         Animated.timing(barAnim, {
             toValue: 0,
             duration:300,
@@ -71,7 +75,7 @@ function NearbyScreen() {
     ])
 
     const menuShow = Animated.parallel([
-        Animated.timing(barAnim, {
+        Animated.timing(menuBarAnim, {
             toValue: 90,
             duration:300,
             useNativeDriver:false,
@@ -79,19 +83,6 @@ function NearbyScreen() {
         Animated.timing(menuTranslateAnim, {
             toValue: 0,
             duration:300,
-            useNativeDriver:false,
-        })
-    ])
-
-    const menuShow_slow = Animated.parallel([
-        Animated.spring(barAnim, {
-            toValue: 90,
-            tension:1,
-            useNativeDriver:false,
-        }),
-        Animated.spring(menuTranslateAnim, {
-            toValue: 0,
-            tension:1,
             useNativeDriver:false,
         })
     ])
@@ -109,19 +100,6 @@ function NearbyScreen() {
         })
     ])
 
-    const submenuShow_slow = Animated.parallel([
-        Animated.spring(barAnim, {
-            toValue: 40,
-            tension:1,
-            useNativeDriver:false,
-        }),
-        Animated.spring(submenuTranslateAnim, {
-            toValue: 0,
-            tension:1,
-            useNativeDriver:false,
-        })
-    ])
-
     const toggleMenu = Animated.sequence([
         menuHide,
         menuShow
@@ -133,12 +111,12 @@ function NearbyScreen() {
     ])
 
     const menu_item = [
-        {title:"卫生防疫",key:"antiepidemic"},
-        {title:"疫苗信息",key:"vaccine"},
-        {title:"证件办理",key:"certificates"},
-        {title:"领养中心",key:"pet-adopt"},
-        {title:"宠物芯片",key:"pet-chip"},
-        {title:"免费服务",key:"free-survice"},
+        {title:"卫生防疫",key:"antiepidemic",icon:Antiepidemic},
+        {title:"疫苗信息",key:"vaccine",icon:Vaccine},
+        {title:"证件办理",key:"certificates",icon:Certificates},
+        {title:"领养中心",key:"pet-adopt",icon:PetAdopt},
+        {title:"宠物芯片",key:"pet-chip",icon:PetChip},
+        {title:"免费服务",key:"free-survice",icon:FreeService},
     ]
     
     
@@ -158,53 +136,7 @@ function NearbyScreen() {
             {theme=>
             <View>
                 <Animated.View style={[{zIndex:2,backgroundColor:theme.background,},{height: barAnim,}]}>
-                    <View style={{height:0}}>
-                    <Animated.View style={[{ // Menu
-                        height: 90,
-                        transform: [{translateY: menuTranslateAnim}],
-                        flexDirection:"row",
-                        alignItems:"center",
-                        justifyContent:"space-evenly",
-                    }]}>
-                        {menu_item.map((item,index)=>{
-                        return(
-                        <TouchableOpacity
-                            onPress={()=>{
-                                setType(item)
-                                toggleSubmenu.start()
-                            }}
-                            key={index}
-                        >
-                            <View style={style.tab_bar_item_container}>
-                                <View style={style.tab_bar_item}>
-                                    <View style={{
-                                        width: 44,
-                                        height: 44,
-                                        borderRadius:22,
-                                        backgroundColor: "#ffffff",
-                                        shadowColor: "rgba(0, 0, 0, 0.16)",
-                                        shadowOffset: {
-                                            width: 0,
-                                            height: 2
-                                        },
-                                        shadowRadius: 2,
-                                        shadowOpacity: 1,
-                                        elevation:3,
-                                    }}>
-                                        {/*<Icon radius={32}/>*/}
-                                    </View>
-                                    <Text style={[
-                                        style.menu_item_text,
-                                        {color:path==item.to?theme.basic_emphasis:theme.text}
-                                    ]}>
-                                        {item.title}
-                                    </Text>
-                                </View>
-                            </View>
-                        </TouchableOpacity>
-                        )})}
-                    </Animated.View>
-                    </View>
+                    
 
                     <Animated.View style={[{ // Menu
                         height: 40,
@@ -220,7 +152,7 @@ function NearbyScreen() {
                             }}
                             style={{flexDirection:"row",alignItems:"center",marginLeft:20}}
                         >
-                            <Icon></Icon>
+                            <BackOutlined/>
                             <View style={{
                                 width: 80,
                                 height: 30,
@@ -275,40 +207,74 @@ function NearbyScreen() {
                 <View style={{zIndex:1}}>
                     <FlatList
                         ListHeaderComponent={()=>(
-                            <View style={{
-                                height:40,
-                                backgroundColor:theme.background,
-                                flexDirection:"row",
-                                alignItems:"flex-end",
-                            }}>
-                                <View style={{marginLeft:22,marginBottom:10,flexDirection:"row",alignItems:"center",}}>
-                                    <Icon radius={18}></Icon>
-                                    <Text style={{
-                                        marginLeft:5,
-	                                    fontSize: 14,
-	                                    lineHeight: 24,
-	                                    color: theme.text
-                                    }}>{type_selected==null?"热门推送":"筛选"}</Text>
+                            <View style={{backgroundColor:theme.background}}>
+                                <Animated.View style={{height:menuBarAnim}}>
+                                    <Animated.View style={[{ // Menu
+                                        height: 90,
+                                        transform: [{translateY: menuTranslateAnim}],
+                                        flexDirection:"row",
+                                        alignItems:"center",
+                                        justifyContent:"space-evenly",
+                                    }]}>
+                                        {menu_item.map((item,index)=>{
+                                        return(type_selected==null&&
+                                        <TouchableOpacity
+                                            onPress={()=>{
+                                                setType(item)
+                                                toggleSubmenu.start()
+                                            }}
+                                            key={index}
+                                        >
+                                            <View style={style.tab_bar_item_container}>
+                                                <View style={style.tab_bar_item}>
+                                                    <View style={{
+                                                        width: 44,
+                                                        height: 44,
+                                                        borderRadius:22,
+                                                        backgroundColor: "#ffffff",
+                                                        shadowColor: "rgba(0, 0, 0, 0.16)",
+                                                        shadowOffset: {
+                                                            width: 0,
+                                                            height: 2
+                                                        },
+                                                        shadowRadius: 2,
+                                                        shadowOpacity: 1,
+                                                        elevation:3,
+                                                    }}>
+                                                        <item.icon radius={50}/>
+                                                    </View>
+                                                    <Text style={[
+                                                        style.menu_item_text,
+                                                        {color:path==item.to?theme.basic_emphasis:theme.text}
+                                                    ]}>
+                                                        {item.title}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                        </TouchableOpacity>
+                                        )})}
+                                    </Animated.View>
+                                </Animated.View>
+
+
+                                <View style={{
+                                    height:40,
+                                    flexDirection:"row",
+                                    alignItems:"flex-end",
+                                }}>
+                                    <View style={{marginLeft:22,marginBottom:10,flexDirection:"row",alignItems:"center",}}>
+                                        {type_selected==null?<HotFilled radius={12}/>:<FilterOutlined radius={12}/>}
+                                        <Text style={{
+                                            marginLeft:5,
+                                            fontSize: 14,
+                                            lineHeight: 24,
+                                            color: theme.text
+                                        }}>{type_selected==null?"热门推送":"筛选"}</Text>
+                                    </View>
                                 </View>
                             </View>
                         )}
-                        //onRefresh={()=>{alert("refresh")}}
-                        //refreshing={true}
-                        //zoomScale={2}
-                        onScroll={(event)=>{
-                            //console.log(event.nativeEvent.contentOffset.y)
-                            if(event.nativeEvent.contentOffset.y<10&&!menu_shown){
-                                setMenuShown(true)
-                                if (type_selected==null){
-                                    menuShow_slow.start()
-                                }else{
-                                    submenuShow_slow.start()
-                                }
-                            }else if (event.nativeEvent.contentOffset.y>10&&menu_shown){
-                                setMenuShown(false)
-                                menuHide.start()
-                            }
-                        }}
+
                         data={getRandomDataFeed()}
                         showsVerticalScrollIndicator={true}
                         renderItem={({ item }) => <FeedItem item={item} key={item.id}/>}
