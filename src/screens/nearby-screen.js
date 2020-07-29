@@ -142,8 +142,10 @@ function NearbyScreen() {
                         shadowRadius: 2,
                         shadowOpacity: 1,
                         elevation:3,
+                        justifyContent:'center',
+                        alignItems:'center',
                       }}>
-                        <item.icon radius={50}/>
+                        <item.icon radius={26}/>
                       </View>
                         <Text style={[
                           style.menu_item_text,
