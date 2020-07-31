@@ -60,7 +60,7 @@ class IconButton extends Component{
         user = this.props.user?this.props.user:{
             user_id:253183587,
             username:"爱犬说",
-            profile_picture_address:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1237285378,2627779522&fm=26&gp=0.jpg",
+            profile_picture:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1237285378,2627779522&fm=26&gp=0.jpg",
             signature:"您的养犬干货仓"
         }
 
@@ -96,7 +96,7 @@ class IconButton extends Component{
                     }
                 ]}>
                     <View style={[{zIndex:2},profile_picture_style,shadow_style]}>
-                        <Image source={{ uri: user.profile_picture_address }} style={{height:avator_radius,width:avator_radius,borderRadius:avator_radius/2}}/>
+                        <Image source={{ uri: user.profile_picture }} style={{height:avator_radius,width:avator_radius,borderRadius:avator_radius/2}}/>
                     </View>
                     <View style={{
                         zIndex:1,

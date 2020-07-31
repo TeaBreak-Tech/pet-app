@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Text, View } from 'react-native'
+import { Button, Text, View, ImageBackground } from 'react-native'
 
 import { connect } from 'react-redux'
 import { saveLoginState } from '../redux/action/login_actions'
@@ -16,10 +16,13 @@ const LoginScreen = ({saveLoginState, navigation}) => {
         })
         navigation.goBack()
     }
+
     return (
         <View>
-            <Text>Login</Text>
-            <Button onPress={sampleLogin} title="Sample Login" />
+            <ImageBackground style={{width:'100%',height:'100%'}} source={require('../appearance/assets/img/login_bg.jpg')}>
+                <Text>Login</Text>
+                <Button onPress={sampleLogin} title="Sample Login" />
+            </ImageBackground>
         </View>
     )
 }

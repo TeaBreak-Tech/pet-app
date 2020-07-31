@@ -22,7 +22,7 @@ import DiscoverScreenItem from '../component/discover-screen-item'
 import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Style
 // Tools
-import { randomPublish } from '../tools/random-data';
+import { randomPublish } from '../tools/moke-network';
 
 function DiscoverScreen({navigation}) {
 

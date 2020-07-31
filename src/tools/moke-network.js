@@ -40,5 +40,29 @@ export const get_followed_users = (id) => {
     return user.slice(1,10)
 }
 
-let result = get_followed_users(1)
-console.log(result)
+export const randomPublish = (n) => {
+    return new Array(n).fill('').map((item, index) => {
+        return {
+            id:index+1,
+            author: get_user(Math.round(index%10)+1),
+            images:[
+                {id:1,uri:"http://106.52.96.163/img/app/background_"+(Math.round(index%9)+1)+".jpg"},
+            ],
+            text: '一段适当长度的文本作为动态的内容显示在这里',
+            tags:[
+                {id:1,title:"猫猫"},
+                {id:2,title:"日常"},
+                {id:3,title:"打卡"},
+            ],
+            interactions:{
+                view:"1.2k",
+                like:"840",
+                favorite:"24",
+                comment:[
+                    {author:get_user(Math.round((index+1)%9)+1),content:"一段文字作为回复示例1"},
+                    {author:get_user(Math.round((index+2)%9)+1),content:"一段文字作为回复示例2"}
+                ]
+            }
+        };
+    });
+};

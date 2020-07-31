@@ -19,7 +19,7 @@ import DiscussionScreenItem from '../component/discussion-screen-item'
 import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Style
 import style from '../appearance/styles/style-discussion-screen'
-import icon from '../component/icon';
+import { HotFilled, FilterOutlined, BackOutlined } from '../component/icon';
 
 getRandomDataDiscussion = () => {
     return new Array(100).fill('').map((item, index) => {
@@ -187,7 +187,7 @@ function NearbyScreen() {
                     </Animated.View>
                     </View>
 
-                    <Animated.View style={[{ // Menu
+                    <Animated.View style={[{ // SubMenu
                         height: 40,
                         transform: [{translateY: submenuTranslateAnim}],
                         flexDirection:"row",
@@ -201,7 +201,7 @@ function NearbyScreen() {
                             }}
                             style={{flexDirection:"row",alignItems:"center",marginLeft:20}}
                         >
-                            <Icon></Icon>
+                            <BackOutlined/>
                             <View style={{
                                 width: 80,
                                 height: 30,
@@ -263,7 +263,8 @@ function NearbyScreen() {
                                 alignItems:"flex-end",
                             }}>
                                 <View style={{marginLeft:22,marginBottom:10,flexDirection:"row",alignItems:"center",}}>
-                                    <Icon radius={18}></Icon>
+                                    
+                                    {type_selected==null?<HotFilled radius={12}/>:<FilterOutlined radius={12}/>}
                                     <Text style={{
                                         marginLeft:5,
 	                                    fontSize: 14,

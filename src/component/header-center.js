@@ -13,11 +13,10 @@ import {
 } from "react-native";
 
 // Context
-import { connect } from 'react-redux'
 import { ThemeContext } from '../appearance/theme/theme-context-provider'
 
 // Tools
-import { isSearching, getTabItems, haveHeader } from '../tools/path_judger'
+import { isSearching, getTabItems } from '../tools/path_judger'
 
 // Styles
 import style from '../appearance/styles/style-header'
@@ -37,9 +36,10 @@ class HeaderCenter extends Component{
     render(){
 
         let theme = this.context;
-        let searching = isSearching(path)
+        let searching = isSearching(this.props.path)
+        let shown = this.props.main_path!="Mine"
 
-        return haveHeader(path)?(
+        return shown?(
 
             <View style={style.center_container}>
                 <View style={style.searching_bar_container}>
@@ -96,4 +96,4 @@ class HeaderCenter extends Component{
     }
 }
 
-export default connect (state => ({ path: state.nav.path }))(HeaderCenter)
+export default HeaderCenter

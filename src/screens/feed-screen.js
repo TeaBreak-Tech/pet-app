@@ -138,7 +138,7 @@ function NearbyScreen() {
                 <Animated.View style={[{zIndex:2,backgroundColor:theme.background,},{height: barAnim,}]}>
                     
 
-                    <Animated.View style={[{ // Menu
+                    <Animated.View style={[{ // SubMenu
                         height: 40,
                         transform: [{translateY: submenuTranslateAnim}],
                         flexDirection:"row",

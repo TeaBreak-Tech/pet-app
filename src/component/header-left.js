@@ -4,9 +4,6 @@
 import React from 'react';
 import { TouchableOpacity, View } from "react-native";
 
-// Context
-import { connect } from 'react-redux'
-
 // Children
 import Avator from '../component/avator'
 
@@ -30,4 +27,4 @@ const HeaderLeft = ({ path, shown, onPress, user }) => {
     ):null
 }
 
-export default connect (state=>({path: state.nav.path, user: state.login.user}))(HeaderLeft)
+export default HeaderLeft

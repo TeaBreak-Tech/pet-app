@@ -43,7 +43,7 @@ const IndexStack = ({ path }) => (
                     <Stack.Screen 
                         name="Main"
                         component={MainTabs}
-                        options={({navigation}) => MainHeaderOptions( navigation, theme, judgePath(path) ) }
+                        options={({navigation, route}) => MainHeaderOptions( navigation, theme, judgePath(path), route ) }
                     />
                     <Stack.Screen name="Settings" component={SettingsScreen} options={{ title:"设置", ...common_options }} />
                     <Stack.Screen name="Checkin" component={CheckinScreen} options={{ title:"签到", ...common_options }} />

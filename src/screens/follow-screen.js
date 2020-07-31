@@ -21,8 +21,7 @@ import { ThemeContext } from '../appearance/theme/theme-context-provider';
 import style from '../appearance/styles/style-follow-screen'
 import { ScrollView } from 'react-native-gesture-handler';
 // Tools
-import { randomPublish } from '../tools/random-data';
-import { get_followed_users } from '../tools/moke-network'
+import { get_followed_users, randomPublish } from '../tools/moke-network'
 
 
 function NearbyScreen() {

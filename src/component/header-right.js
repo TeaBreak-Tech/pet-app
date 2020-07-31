@@ -4,9 +4,6 @@
 import React from 'react';
 import { TouchableOpacity, View } from "react-native";
 
-// Context
-import { connect } from 'react-redux'
-
 // Children
 import { NearbyOutlined, VPOutlined } from '../component/icon'
 
@@ -31,4 +28,4 @@ const HeaderRight = ({ path, shown, onPress }) => {
     ):null
 }
 
-export default connect (state=>({path: state.nav.path}))(HeaderRight)
+export default HeaderRight
