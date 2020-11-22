@@ -138,10 +138,18 @@ class MineScreen extends Component {
     });
 
     render() {
+        
+        //获取当前导航位置
+        let state = this.props.navigation.dangerouslyGetState()
+        while(state.routes[state.index].state){
+            state = state.routes[state.index].state
+        }
+        let path = state.routeNames[state.index]
+
         // Theme
         let theme = this.context;
         // Animation
-        const { text,isLogin,user,path } = this.props;
+        const { text,isLogin,user } = this.props;
         const translate = this.pan.y.interpolate({
             inputRange:[-10000,-this.state.distance,0,500],
             outputRange:[-this.state.distance,-this.state.distance,0,80],
@@ -284,7 +292,6 @@ export default connect (
             text: state.text.text,
             isLogin: state.login.isLogin,
             user: state.login.user,
-            path: state.nav.path,
         }
     },
     { changeText }

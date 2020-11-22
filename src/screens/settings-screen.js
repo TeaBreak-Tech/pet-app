@@ -21,7 +21,6 @@ const mapStateToProps = (state) => {
     return {
         text: state.text.text,
         isLogin: state.login.isLogin,
-        path: state.nav.path,
         user:state.login.user
     }
 }

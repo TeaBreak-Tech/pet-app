@@ -24,7 +24,7 @@ import { HotFilled, FilterOutlined, BackOutlined } from '../component/icon';
 getRandomDataDiscussion = () => {
     return new Array(100).fill('').map((item, index) => {
         return {
-            id:index+1,
+            id:''+(index+1),
             title: "新手铲屎官应该注意什么",
             images:[
                 {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592556493733&di=407136381c360447fbd22e9d42215ea4&imgtype=0&src=http%3A%2F%2Fb.zol-img.com.cn%2Fsoft%2F6%2F434%2FcerHmI26yCoo.jpg"},
@@ -34,7 +34,7 @@ getRandomDataDiscussion = () => {
     });
 };
 
-function NearbyScreen() {
+function DiscussionScreen() {
 
     const [menu_shown, setMenuShown] = React.useState(true);
 
@@ -213,7 +213,7 @@ function NearbyScreen() {
                             }}>
                                 <Text
                                     style={{
-                                        ontSize: 12,
+                                        fontSize: 12,
 	                                    lineHeight: 20,
                                         color: "#ffffff",
                                         fontWeight:"bold",
@@ -229,7 +229,7 @@ function NearbyScreen() {
                             onPress={()=>{
                                 setFilter(item)
                             }}
-                            key={index}
+                            key={item.key}
                         >
                             <View style={{
                                 justifyContent:"center",
@@ -305,4 +305,4 @@ function NearbyScreen() {
         </ThemeContext.Consumer>
     );
 }
-export default  NearbyScreen
+export default DiscussionScreen

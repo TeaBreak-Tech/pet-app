@@ -27,7 +27,7 @@ function NearbyScreen() {
     const getRandomNearby = () => {
       return new Array(100).fill('').map((item, index) => {
         return {
-          id:index+1,
+          id:""+(index+1),
           title: '标题' + (index + 1),
           images:[
             {id:1,uri:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=879378779,1619059974&fm=15&gp=0.jpg"},
@@ -125,7 +125,7 @@ function NearbyScreen() {
                 return(
                 <TouchableOpacity
                   onPress={()=>{}}
-                  key={index}
+                  key={item.key}
                 >
                   <View style={style.tab_bar_item_container}>
                     <View style={style.tab_bar_item}>
@@ -149,7 +149,7 @@ function NearbyScreen() {
                       </View>
                         <Text style={[
                           style.menu_item_text,
-                          {color:path==item.to?theme.basic_emphasis:theme.text}
+                          {color:theme.text}
                         ]}>
                           {item.title}
                         </Text>

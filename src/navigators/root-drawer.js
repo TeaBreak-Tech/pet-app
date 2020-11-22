@@ -1,49 +1,42 @@
 import React, { Component } from 'react';
-import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
-
-import {ThemeContext} from '../appearance/theme/theme-context-provider'
-
-import { connect } from 'react-redux'
-import { navigation } from '../redux/action/navigation_actions'
 
 import IndexStack from './index-stack'
 import InfoDrawerScreen from '../screens/info-drawer-screen'
 
+import { connect } from 'react-redux'
+import { saveLoginState } from '../redux/action/login_actions'
+
+import { getData } from '../tools/async-storage'
+
 const Drawer = createDrawerNavigator();
 
+const InfoDrawer = ({isLogin, user, saveLoginState}) => {
 
-
-export default connect (
-    (state) => {return{path: state.nav.path}},
-    {navigation}
-)(class InfoDrawer extends Component {
-
-    // 将 React Navigation 的导航状态变化解析到 Redux 状态管理中
-    setRoute(state){
-        //console.log(state)
-        let route = state.routes[state.index]
-        if (route.state){this.setRoute(route.state)} //迭代
-        else {
-            this.props.navigation(route.name)
+    const resumeLogin = async () => {
+        loginInfo = await getData('app_login')
+        if(loginInfo){
+            console.log(loginInfo)
+            saveLoginState(loginInfo.user)
         }
     }
 
-    render() {
-
-        path = this.props.path
-
-        return (
-            <NavigationContainer onStateChange={state => this.setRoute(state)}>
-                {/* 任何导航信息变化都将在 Redux 中同步更新 */}
-                <Drawer.Navigator
-                    drawerType={'front'}
-                    drawerContent={props=><InfoDrawerScreen {...props}/>}
-                >   
-                    <Drawer.Screen name="IndexStack" component={IndexStack} />
-                </Drawer.Navigator>
-            </NavigationContainer>
-        );
+    if(!isLogin){
+        console.log("try login")
+        resumeLogin()
     }
-})
+
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator
+                drawerType={'front'}
+                drawerContent={props=><InfoDrawerScreen {...props}/>}
+            >   
+                <Drawer.Screen name="IndexStack" component={IndexStack} />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
+}
+
+export default connect (state=>({ isLogin:state.login.isLogin, user:state.login.user }),{saveLoginState}) (InfoDrawer)

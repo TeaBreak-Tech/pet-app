@@ -20,7 +20,7 @@ import style from '../appearance/styles/style-profile-card'
 
 const ProfileCard = ({height, onEdit, onLogin, askLogin, user, isLogin}) => {
 
-    showLogin = askLogin?isLogin?false:true:false
+    showLogin = askLogin?isLogin:false
 
     return (
         <View style={[style.root_container,{height:height}]}>

@@ -13,9 +13,7 @@ import Icon from '../component/icon'
 
 // class: InfoDrawerContent
 
-export default connect (
-    (state) => {return{path: state.nav.path}}
-)(class InfoDrawerContent extends Component{
+export default class InfoDrawerContent extends Component{
     static contextType = ThemeContext;
 
     render(){
@@ -63,4 +61,4 @@ export default connect (
             </View>
         )
     }
-})
+}

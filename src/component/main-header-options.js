@@ -10,7 +10,7 @@ import HeaderRight from '../component/header-right'
 import {safeAreaFromTop} from '../tools/scale'
 import judgePath from '../tools/path_judger'
 
-function MainHeaderOptions (navigation,theme,settings,route){
+function MainHeaderOptions (navigation,theme,route){
     //console.log("Header Options's Navigation Prop:\n",navigation)
     
     let path = "Discover"
@@ -23,11 +23,12 @@ function MainHeaderOptions (navigation,theme,settings,route){
         route = route.state.routes[route.state.index]
     }
     // 在此处加上状态栏高度（只需加这一次）
-    settings = judgePath(path)
+    let settings = judgePath(path)
+    console.log(path)
     height = settings.header_height+safeAreaFromTop()
 
     return({
-        headerTransparent: path==="Mine"? true:false,
+        headerTransparent: main_path==="Mine"? true:false,
         headerTitle: () => (<HeaderCenter path={path} main_path={main_path} navigation={navigation}/>),
         headerLeft: () => (<HeaderLeft path={path} onPress={()=>navigation.openDrawer()}/>),
         headerRight: () => (<HeaderRight path={path} onPress={()=>navigation.navigate('Virtual-Pet')}/>),

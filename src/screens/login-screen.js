@@ -15,6 +15,7 @@ const LoginScreen = ({saveLoginState, navigation}) => {
             profile_picture_uri:"http://106.52.96.163/img/app/profile_1.jpg",
         })
         navigation.goBack()
+        alert("成功登陆")
     }
 
     return (

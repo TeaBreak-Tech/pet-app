@@ -37,7 +37,11 @@ class HeaderCenter extends Component{
 
         let theme = this.context;
         let searching = isSearching(this.props.path)
+        //alert(this.props.path)
         let shown = this.props.main_path!="Mine"
+
+        let final_path = this.props.path
+        if(final_path==="Find"){final_path="Feed"}
 
         return shown?(
 
@@ -78,14 +82,14 @@ class HeaderCenter extends Component{
                     style={style.tab_bar_container}
                     contentContainerStyle={{alignItems:"center", justifyContent:"space-between"}}
                 >
-                    {getTabItems(path).map((item,index)=>
+                    {getTabItems(this.props.main_path,final_path).map((item,index)=>
                         <TouchableOpacity
                             style={style.tab_bar_item_container}
                             onPress={()=>{this.props.navigation.navigate(item.to)}}
-                            key={index}
+                            key={""+index}
                         >
-                            <View style={{ borderBottomColor:path==item.to?theme.alert:'transparent', ...style.tab_bar_item }}>
-                                <Text style={{ color:path==item.to?theme.text_emphasis:theme.text, ...style.tab_bar_item_text }}>{item.key}</Text>
+                            <View style={{ borderBottomColor:final_path==item.to?theme.alert:'transparent', ...style.tab_bar_item }}>
+                                <Text style={{ color:final_path==item.to?theme.text_emphasis:theme.text, ...style.tab_bar_item_text }}>{item.key}</Text>
                             </View>
                         </TouchableOpacity>
                     )}

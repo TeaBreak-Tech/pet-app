@@ -23,7 +23,7 @@ import { Antiepidemic, Vaccine, Certificates, PetAdopt, PetChip, FreeService } f
 getRandomDataFeed = () => {
     return new Array(100).fill('').map((item, index) => {
         return {
-            id:index+1,
+            id:""+(index+1),
             title: '标题' + (index + 1),
             images:[
                 {id:1,uri:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592556493733&di=872f7624d7801d59c8857f1e05bf7acf&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2Fattachments2%2Fday_120912%2F12091204401a7d53280e5a7080.jpg"},
@@ -43,7 +43,7 @@ getRandomDataFeed = () => {
     });
 };
 
-function NearbyScreen() {
+function FeedScreen() {
 
     const [type_selected, setType] = React.useState(null);
     const barAnim = useRef(new Animated.Value(0)).current;
@@ -164,7 +164,7 @@ function NearbyScreen() {
                             }}>
                                 <Text
                                     style={{
-                                        ontSize: 12,
+                                        fontSize: 12,
 	                                    lineHeight: 20,
                                         color: "#ffffff",
                                         fontWeight:"bold",
@@ -180,7 +180,7 @@ function NearbyScreen() {
                             onPress={()=>{
                                 setFilter(item)
                             }}
-                            key={index}
+                            key={item.key}
                         >
                             <View style={{
                                 justifyContent:"center",
@@ -223,7 +223,7 @@ function NearbyScreen() {
                                                 setType(item)
                                                 toggleSubmenu.start()
                                             }}
-                                            key={index}
+                                            key={item.key}
                                         >
                                             <View style={style.tab_bar_item_container}>
                                                 <View style={style.tab_bar_item}>
@@ -247,7 +247,7 @@ function NearbyScreen() {
                                                     </View>
                                                     <Text style={[
                                                         style.menu_item_text,
-                                                        {color:path==item.to?theme.basic_emphasis:theme.text}
+                                                        {color:theme.text}
                                                     ]}>
                                                         {item.title}
                                                     </Text>
@@ -279,7 +279,7 @@ function NearbyScreen() {
 
                         data={getRandomDataFeed()}
                         showsVerticalScrollIndicator={true}
-                        renderItem={({ item }) => <FeedItem item={item} key={item.id}/>}
+                        renderItem={({ item }) => <FeedItem item={item}/>}
                         keyExtractor={item => item.id}
                         style={{top:0}}
                     >
@@ -291,4 +291,4 @@ function NearbyScreen() {
         </ThemeContext.Consumer>
     );
 }
-export default  NearbyScreen
+export default  FeedScreen

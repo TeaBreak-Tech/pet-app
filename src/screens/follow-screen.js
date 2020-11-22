@@ -1,15 +1,11 @@
 // 关注页
 // Import
-import React, { useRef } from 'react';
+import React from 'react';
 import {
     View,
     Text,
-    StyleSheet,
     FlatList,
     TouchableOpacity,
-    RefreshControl,
-    TextInput,
-    Animated,
     Image,
 } from 'react-native'
 
@@ -24,14 +20,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { get_followed_users, randomPublish } from '../tools/moke-network'
 
 
-function NearbyScreen() {
+function FollowScreen() {
 
     const follow_list = get_followed_users(1)
-
-    const [menu_shown, setMenuShown] = React.useState(true);
-    const barAnim = useRef(new Animated.Value(90)).current;
-    
-    // static sequence(animations)
 
     return (
         <ThemeContext.Consumer>
@@ -87,4 +78,4 @@ function NearbyScreen() {
         </ThemeContext.Consumer>
     );
 }
-export default  NearbyScreen
+export default  FollowScreen

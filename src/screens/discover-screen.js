@@ -24,6 +24,8 @@ import { ThemeContext } from '../appearance/theme/theme-context-provider';
 // Tools
 import { randomPublish } from '../tools/moke-network';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 function DiscoverScreen({navigation}) {
 
     const [show_options, setShowOptions] = React.useState(false);
@@ -57,8 +59,7 @@ function DiscoverScreen({navigation}) {
         useNativeDriver:false,
       }).start(()=>{});
     };
-
-
+    
     return (
     <ThemeContext.Consumer>
     {theme=>

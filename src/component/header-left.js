@@ -1,4 +1,4 @@
-/* 顶栏右侧图标按钮 */
+/* 顶栏左侧图标按钮 */
 
 // Imports
 import React from 'react';
@@ -13,11 +13,13 @@ import { haveHeader, isSearching } from '../tools/path_judger'
 // Styles
 import style from '../appearance/styles/style-header'
 
+// Context
+import { connect } from 'react-redux'
+
 const HeaderLeft = ({ path, shown, onPress, user }) => {
 
     shown = shown?true:(haveHeader(path)&&(!isSearching(path)))
-
-
+    
     return shown?(
         <TouchableOpacity style={style.header_left_container} onPress={onPress}>
             <View style={style.header_left_right_icon}>
@@ -27,4 +29,4 @@ const HeaderLeft = ({ path, shown, onPress, user }) => {
     ):null
 }
 
-export default HeaderLeft
+export default connect (state=>({ isLogin: state.login.isLogin, user: state.login.user}))(HeaderLeft)
